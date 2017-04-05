@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>fangjiale.github.io</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="虚拟键盘的一些问题移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。
+1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。123456789101112131415161718192021222324">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fangjiale.github.io">
+<meta property="og:url" content="blog.calouni.win/2017/04/05/virtual_keyboard/index.html">
+<meta property="og:site_name" content="fangjiale.github.io">
+<meta property="og:description" content="虚拟键盘的一些问题移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。
+1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。123456789101112131415161718192021222324">
+<meta property="og:updated_time" content="2017-04-05T06:35:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="fangjiale.github.io">
+<meta name="twitter:description" content="虚拟键盘的一些问题移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。
+1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。123456789101112131415161718192021222324">
+  
+    <link rel="alternate" href="/atom.xml" title="fangjiale.github.io" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">fangjiale.github.io</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="blog.calouni.win"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-virtual_keyboard" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/05/virtual_keyboard/" class="article-date">
+  <time datetime="2017-04-05T06:06:36.000Z" itemprop="datePublished">2017-04-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="虚拟键盘的一些问题"><a href="#虚拟键盘的一些问题" class="headerlink" title="虚拟键盘的一些问题"></a>虚拟键盘的一些问题</h1><p>移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。</p>
+<p>1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况<br>解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">setTimeout(function () &#123;</div><div class="line">  $(&apos;#dl_app img&apos;).hide();</div><div class="line">&#125;, 100);</div><div class="line"></div><div class="line">window.alert = function (msg) &#123;</div><div class="line">  $(&apos;body&apos;).append(&apos;&lt;div&gt;&apos; + msg + &apos;&lt;/div&gt;&apos;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">window.res = null;</div><div class="line">var i = 0;</div><div class="line"></div><div class="line">function fixedWatch(el) &#123;</div><div class="line">  alert(i++);</div><div class="line">  if(document.activeElement.nodeName == &apos;INPUT&apos;)&#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;static&apos;);</div><div class="line">  &#125; else &#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;fixed&apos;);</div><div class="line">    if(window.res ) &#123; clearInterval(window.res ); window.res  = null; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$(&apos;input&apos;).focus(function () &#123;</div><div class="line">  if(!window.res) &#123;</div><div class="line">    fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    window.res = setInterval(function () &#123;</div><div class="line">      fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    &#125;, 500);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>2、当页面初始化时，要自动聚焦input，弹出虚拟键盘，这做不到。<br>网上提供的模拟用户点击之类都是无效的，先mark，有了好方法之后再补充。弹出的条件是必须要用户实际有操作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="blog.calouni.win/2017/04/05/virtual_keyboard/" data-id="cj14lnd590001x6qz08y06mkj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/03/16/carousel/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/05/virtual_keyboard/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/03/16/carousel/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 fangjiale<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
