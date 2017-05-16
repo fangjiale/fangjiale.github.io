@@ -121,7 +121,7 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
       
     </div>
     <footer class="article-footer">
-      <a data-url="blog.calouni.win/2017/04/17/http/" data-id="cj1omk5u10000tyqzrsa61rr6" class="article-share-link">Share</a>
+      <a data-url="blog.calouni.win/2017/04/17/http/" data-id="cj2rb30ki0002tftosncy9vf8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,11 +146,12 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
         <h1 id="虚拟键盘的一些问题"><a href="#虚拟键盘的一些问题" class="headerlink" title="虚拟键盘的一些问题"></a>虚拟键盘的一些问题</h1><p>移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。</p>
 <p>1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况<br>解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">setTimeout(function () &#123;</div><div class="line">  $(&apos;#dl_app img&apos;).hide();</div><div class="line">&#125;, 100);</div><div class="line"></div><div class="line">window.alert = function (msg) &#123;</div><div class="line">  $(&apos;body&apos;).append(&apos;&lt;div&gt;&apos; + msg + &apos;&lt;/div&gt;&apos;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">window.res = null;</div><div class="line">var i = 0;</div><div class="line"></div><div class="line">function fixedWatch(el) &#123;</div><div class="line">  alert(i++);</div><div class="line">  if(document.activeElement.nodeName == &apos;INPUT&apos;)&#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;static&apos;);</div><div class="line">  &#125; else &#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;fixed&apos;);</div><div class="line">    if(window.res ) &#123; clearInterval(window.res ); window.res  = null; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$(&apos;input&apos;).focus(function () &#123;</div><div class="line">  if(!window.res) &#123;</div><div class="line">    fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    window.res = setInterval(function () &#123;</div><div class="line">      fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    &#125;, 500);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <p>2、当页面初始化时，要自动聚焦input，弹出虚拟键盘，这做不到。<br>网上提供的模拟用户点击之类都是无效的，先mark，有了好方法之后再补充。弹出的条件是必须要用户实际有操作。</p>
+<p>h5页面做不到，但内嵌在app里面input只要写了focus事件就能聚焦调起虚拟键盘。如果是搜索框，虚拟键盘输入时右下角为换行键，如果点换行也是能提交input的搜索的，但是虚拟键盘不能自动缩回去。需要做的是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(document).keydown(function (event) &#123;</div><div class="line">      if (event.keyCode == 13) &#123;</div><div class="line">        btnSearch.click(); //触发搜索按钮的点击</div><div class="line">        iptSearch.blur(); //input 失焦</div><div class="line">        return false; //可以阻止浏览器默认事件等</div><div class="line">      &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="blog.calouni.win/2017/04/05/virtual_keyboard/" data-id="cj1omk5u80002tyqzrtq6mlf9" class="article-share-link">Share</a>
+      <a data-url="blog.calouni.win/2017/04/05/virtual_keyboard/" data-id="cj2rb30k90000tfto8q5mjfol" class="article-share-link">Share</a>
       
       
     </footer>
@@ -178,7 +179,7 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
       
     </div>
     <footer class="article-footer">
-      <a data-url="blog.calouni.win/2017/03/16/carousel/" data-id="cj1omk5u60001tyqz4b4d6aci" class="article-share-link">Share</a>
+      <a data-url="blog.calouni.win/2017/03/16/carousel/" data-id="cj2rb30kf0001tftokgt5wj9q" class="article-share-link">Share</a>
       
       
     </footer>
