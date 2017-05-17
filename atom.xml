@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>fangjiale.github.io</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="blog.calouni.win/"/>
+  <updated>2017-05-17T02:13:09.000Z</updated>
+  <id>blog.calouni.win/</id>
+  
+  <author>
+    <name>fangjiale</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多图滑动兼容浏览器默认行为</title>
+    <link href="blog.calouni.win/2017/04/20/carousel/"/>
+    <id>blog.calouni.win/2017/04/20/carousel/</id>
+    <published>2017-04-19T22:49:50.000Z</published>
+    <updated>2017-05-17T02:13:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>页面元素结构如下：</p>
+<pre><code>&lt;div class=&quot;banner&quot;&gt;
+    &lt;ul class=&quot;banner-inner&quot;&gt;
+        &lt;li class=&quot;banner-item&quot;&gt;
+    &lt;/ul&gt;
+    &lt;div class=&quot;switch banner-switch&quot;&gt;
+        &lt;span class=&quot;switch-item cur&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;switch-item&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>一般浏览器表现良好，但是碰到qq，uc等含有左滑右滑都会前进后退行为的浏览器就会不太友好。 这明显是浏览器默认的行为，可以通过e.preventDefault(); 来禁止，经过调试，只需在touchmove的时候禁止就可以了。 刚开始禁止的是banner-inner这个div的touchmove，因为有关滑动的操作都是绑在这个元素上面。这样之后滑动touchmove的时候表现良好，但松手后，banner-inner进行transration时就还是会触发浏览器默认行为。 就在想无论是否在动画过程中，触发的不都是banner-inner这个元素的touchmove事件，而且已经禁止默认事件了，为什么还会有浏览器默认行为呢。 经过多次尝试与监听，发现动画过程中，用户触发的是banner-inner的父级，也就是banner元素的事件。 所以解决办法是添加了banner的touchmove事件监听，就是下面代码中加粗的那部分，禁止默认事件即可。<br>下面多图组件的代码</p>
+<a id="more"></a>
+<pre><code class="C++">(function($){
+  var $window = $(window);
+  var defaultOpts = {
+      wrap: &#39;.banner-inner&#39;,
+      item: &#39;.banner-item&#39;,
+      indicator: &#39;.banner-switch&#39;,
+      cur: 0,
+      duration: 0.5,      // 动画持续时间 单位s
+      delay: 500         // 动画执行间隔 单位s
+    };
+
+  var Carousel = function (obj, opts){
+    this.timer = null;
+    this.init(obj, opts);
+  }
+
+  Carousel.prototype = {
+    play: function() {
+      var _this = this;
+      _this.timer = setInterval(function() {
+        _this.turnItem(1);
+      }, _this.opts.delay * 1000);
+    },
+    turnItem: function(step) {
+      var _this = this;
+      var opts = _this.opts;
+      if(!opts.isLock) {
+        opts.pos += step;//-1  step 0 pos -2
+        opts.cur = _this.resetVal(opts.cur + step);//2
+        var next = _this.resetVal(opts.cur + step);//1 2
+
+        clearInterval(_this.timer);
+        _this.$item.eq(opts.cur).css({left: opts.pos * opts.itemW + &#39;px&#39;});
+        _this.$item.eq(next).css({left: (opts.pos + step) * opts.itemW + &#39;px&#39;});
+        _this.$wrap.css({transition: &#39;transform &#39; + opts.duration + &#39;s&#39;, transform: &#39;translate3d(&#39; + opts.pos * opts.itemW * -1 + &#39;px,0,0)&#39;});
+        //_this.$indicator.css({transition: &#39;transform &#39; + opts.duration / 2 + &#39;s&#39;, transform: &#39;translate3d(&#39; + opts.pos % opts.indicatorCount * 100 + &#39;%,0,0)&#39;});
+        if(opts.indicatorCount&lt;3){
+          step &amp;&amp; _this.$indicator.find(&#39;.cur&#39;).removeClass(&#39;cur&#39;).siblings().addClass(&#39;cur&#39;);
+        }else{
+          _this.$indicator.find(&#39;.switch-item&#39;).removeClass(&#39;cur&#39;);
+          _this.$indicator.find(&#39;.switch-item&#39;).eq(opts.cur).addClass(&#39;cur&#39;);
+        }
+      }
+    },
+    resetVal: function(val) {
+      var itemCount = this.opts.itemCount;
+      if(val &gt; itemCount - 1) {
+        val = 0;
+      }
+      else if(val &lt; 0) {
+        val = itemCount - 1;
+      }
+      return val;
+    },
+    touchEvent: function() {
+      var _this = this;
+      // $window.on(&#39;resize&#39;, _this.refresh(_this));
+      $window.on(&#39;resize&#39;, _this.refresh(_this));
+
+      var sx = sy = ex = ey = 0;
+
+      _this.$wrap.on(&#39;touchstart&#39;, function(e) {
+                    var touch = e.originalEvent.changedTouches[0];
+                    sx = touch.pageX;
+                    sy = touch.pageY;
+                    clearInterval(_this.timer);
+                }).on(&#39;touchmove&#39;, function(e){
+                    var touch = e.originalEvent.changedTouches[0];
+                    var x = touch.pageX;
+                    var y = touch.pageY;
+
+                    if (Math.abs(x-sx) &gt; Math.abs(y-sy) * 2) {
+                      _this.$wrap.css({transition: &#39;transform 0s&#39;, transform: &#39;translate3d(&#39; + (_this.opts.pos * _this.opts.itemW * -1 + (x - sx)) + &#39;px,0,0)&#39;});
+                      e.preventDefault();
+                    }
+                }).on(&#39;touchend&#39;, function(e){
+                    var touch = e.originalEvent.changedTouches[0];
+                    ex = touch.pageX;
+                    ey = touch.pageY;
+                    var x = ex - sx ;
+                    var _x = Math.abs(x);
+                    var step = 0;
+                    if(_x &gt; Math.abs(ey - sy) &amp;&amp; _x &gt; 80) {
+                      step = x &gt; 0 ? -1 : 1;
+                    }
+                    _this.turnItem(step);
+                    _this.play();
+                });
+
+      _this.$box.on(&#39;touchmove&#39;, function(e){
+        var touch = e.originalEvent.changedTouches[0];
+        var x = touch.pageX;
+        var y = touch.pageY;
+        if (Math.abs(x-sx) &gt; Math.abs(y-sy) * 2) {
+          e.preventDefault();       
+        }
+      })
+    },
+    initView: function(obj, options) {
+      //test
+      var _this = this;
+      var opts = $.extend({}, defaultOpts, options);
+
+      opts.itemCount = 0;         //  轮播item个数
+      opts.itemW = 0;             //  轮播item宽度
+      opts.indicatorCount = 0;    //  控制器item个数
+      opts.cur = 0;               //  当前item显示位置
+      opts.pos = 0;               //  当前容器显示位置
+      opts.isLock = false;        //  lock
+
+      this.$box = $(obj);
+      this.$wrap = this.$box.find(opts.wrap);
+      this.$item = this.$wrap.find(opts.item);
+      this.$indicator = this.$box.find(opts.indicator);
+
+      opts.itemCount = opts.indicatorCount = this.$item.length;
+      opts.itemW = this.$box.width();
+
+      if(opts.itemCount &lt; 2){
+        return false;
+      }
+      else if(opts.itemCount &lt; 3){
+        this.$item.clone().appendTo(this.$wrap);
+        this.$item = this.$wrap.find(opts.item);
+        opts.itemCount = this.$item.length;
+      }
+
+      // 初始化item位置
+      for(var i = 0 ; i &lt; opts.itemCount - 1 ; i++) {
+        this.$item.eq(i).css({left: i * opts.itemW + &#39;px&#39;});
+      }
+      this.$item.eq(i).css({left: -1 * opts.itemW + &#39;px&#39;});
+
+      // 初始化容器
+      this.$wrap.css({transition: &#39;transform &#39; + opts.duration + &#39;s&#39;, transform: &#39;translate3d(0,0,0)&#39;});
+
+      // 初始化控制器
+      this.$indicator.width(100 / opts.indicatorCount + &#39;%&#39;);
+
+      this.opts = opts;
+
+      return true;
+    },
+    init: function(obj, opts) {
+      if(!this.initView(obj, opts)) {
+        return ;
+      }
+      this.touchEvent();
+      this.play();
+    },
+    refresh: function() {
+      this.opts.itemW = this.$box.width();
+      this.opts.isLock = false;
+    },
+    _throttle: function(fn, delay, duration, cxt) {
+      var timer = null;
+      var t_start;
+      return function() {
+        var args = arguments;
+        var t_curr = +new Date();
+
+        clearTimeout(timer);
+        cxt.opts.isLock = true;
+
+        if (!t_start) {
+          t_start = t_curr;
+        }
+        if (t_curr - t_start &gt;= duration) {
+          fn.apply(cxt, args);
+          t_start = t_curr;
+        } else {
+          timer = setTimeout(function() {
+            fn.apply(cxt, args);
+          }, delay);
+        }
+      };
+    }
+  };
+  $.fn.Carousel = function(opts) {
+    return this.each(function(i){
+      !$(this).data(&#39;carousel&#39;) &amp;&amp; $(this).data(&#39;carousel&#39;, new Carousel(this, opts));
+    });
+  }
+})(jQuery);
+</code></pre>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;页面元素结构如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;banner&amp;quot;&amp;gt;
+    &amp;lt;ul class=&amp;quot;banner-inner&amp;quot;&amp;gt;
+        &amp;lt;li class=&amp;quot;banner-item&amp;quot;&amp;gt;
+    &amp;lt;/ul&amp;gt;
+    &amp;lt;div class=&amp;quot;switch banner-switch&amp;quot;&amp;gt;
+        &amp;lt;span class=&amp;quot;switch-item cur&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+        &amp;lt;span class=&amp;quot;switch-item&amp;quot;&amp;gt;&amp;lt;/span&amp;gt;
+    &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一般浏览器表现良好，但是碰到qq，uc等含有左滑右滑都会前进后退行为的浏览器就会不太友好。 这明显是浏览器默认的行为，可以通过e.preventDefault(); 来禁止，经过调试，只需在touchmove的时候禁止就可以了。 刚开始禁止的是banner-inner这个div的touchmove，因为有关滑动的操作都是绑在这个元素上面。这样之后滑动touchmove的时候表现良好，但松手后，banner-inner进行transration时就还是会触发浏览器默认行为。 就在想无论是否在动画过程中，触发的不都是banner-inner这个元素的touchmove事件，而且已经禁止默认事件了，为什么还会有浏览器默认行为呢。 经过多次尝试与监听，发现动画过程中，用户触发的是banner-inner的父级，也就是banner元素的事件。 所以解决办法是添加了banner的touchmove事件监听，就是下面代码中加粗的那部分，禁止默认事件即可。&lt;br&gt;下面多图组件的代码&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="浏览器" scheme="blog.calouni.win/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+      <category term="兼容" scheme="blog.calouni.win/tags/%E5%85%BC%E5%AE%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="blog.calouni.win/2017/04/17/http/"/>
+    <id>blog.calouni.win/2017/04/17/http/</id>
+    <published>2017-04-17T02:39:32.000Z</published>
+    <updated>2017-05-16T09:25:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="TCP-IP-HTTP-协议-详解"><a href="#TCP-IP-HTTP-协议-详解" class="headerlink" title="TCP/IP  HTTP 协议   详解"></a>TCP/IP  HTTP 协议   详解</h1><h2 id="tcp-ip"><a href="#tcp-ip" class="headerlink" title="tcp/ip"></a>tcp/ip</h2><p>三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。</p>
+<p>握手三部曲：</p>
+<ol>
+<li>客户端(syn=j)   ——&gt;服务端     </li>
+<li>服务端（syn=k,ack=j+1）——&gt; 客户端</li>
+<li>客户端（ack=k+1）——&gt; 服务端<br>如果这三步都成功则tcp连接成功，就可以发数据包了。</li>
+</ol>
+<p>正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送syn，因为ip和端口都是不存在的，所以服务器发送出去之后，就再也接收不到客户端的回应了。这样服务器会在那里等待以至于超时；一两个超时不会造成问题，但如果是 syn flood 的话，服务器就会有一堆半连接的tcp，就会造成堵塞。</p>
+<p>网上有很多syn攻击的工具，hping<br>mac弄起来不是特别方便，先放着，有时间再下工具来测了。</p>
+<a id="more"></a>
+<h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><p>HTTP协议是建立在TCP协议之上的一种应用，网站的请求数据都是用的http协议，作为前端程序员用的最多也是http协议。http是应用层的协议，tcp是传输层，它俩不是平行的关系，而是http基于tcp连接。 Tcp只负责连接，没有数据的部分，而http则在tcp连接建立好之后，进行带数据的请求。</p>
+<p>现在广泛用的http1.1版本,1.1相对于1.0 升级的地方。</p>
+<ol>
+<li>1.0的连接是一次连接对应一次请求，服务端返回数据之后就会关闭连接；1.1一次连接对应多次请求，而且多次请求之间不会阻塞等待，可以并行发送请求和接收数据。  （为了解决一个网页文件中有很多的图片内容请求和操作请求，建立和关闭连接都需要代价）</li>
+<li>请求头里面加了两个很有用的字段<br><code>Host: open.test.ximalaya.com
+Proxy-Connection: keep-alive</code><br>Host 的存在可以写主机名，在服务器ip和端口相同的情况下，一个tcp连接就可以适用于一台服务器上面的不同域名站点的请求。 Proxy-Connection字段可以告诉服务器这次请求完之后，需要怎么处理tcp连接，如果是keep-alive，则不关闭连接。</li>
+</ol>
+<h3 id="http-1"><a href="#http-1" class="headerlink" title="http"></a>http</h3><h4 id="请求过程"><a href="#请求过程" class="headerlink" title="请求过程"></a>请求过程</h4><p>Http是“请求——回应”，这样的过程，一个请求对应一个响应，发请求之前会建立tcp连接，然后A客户端（浏览器）发请求给（服务器），B拿到内容（一个网页html文件，或者js文件，或者数据），发回给A。如果是html文件，浏览器会去解析显示；如果是js也会自动去运行；如果是数据，可以通过js代码控制，将数据显示给用户。</p>
+<h4 id="http-几个部分"><a href="#http-几个部分" class="headerlink" title="http 几个部分"></a>http 几个部分</h4><ol>
+<li>request  header 这是一个请求发出去的情况<br><code>GET /opage/category/manage HTTP/1.1
+Host: open.test.ximalaya.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Referer: http://open.test.ximalaya.com/opage/index
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8,en;q=0.6
+Cookie: device_id=1778036c-7133-c640-dd92-a618212f76fc;</code><br>这是我复制过来的请求头，request source ，一行一行看就知道所有请求的信息都在这里显示了。 实际项目中有次报错400 （bad request），这种情况最好的解决办法就是打开请求头看个究竟，原来发了一个post给服务器，但相应的url的接口只能接收get方法的请求，如果post方法发过去的请求是不被允许的，就报400错误了。 </li>
+<li>response  header 服务器返回的情况<br><code>HTTP/1.1 200 OK
+access-control-allow-origin: *
+server: node-static/0.7.6
+cache-control: max-age=3600
+etag: &quot;1687406-180-1492078895000&quot;
+date: Fri, 14 Apr 2017 08:04:33 GMT
+last-modified: Thu, 13 Apr 2017 10:21:35 GMT
+content-type: text/css
+content-length: 180
+connection: keep-alive</code><br>有关服务器的很多信息会放在这里，http协议版本，状态码，跨域，缓存（Http报头里面还有Last-Modified和ETags字段来定缓存机制，当然还有cache-control字段同时使用和控制。之后有空会写一篇专门的http的缓存机制。 <a href="http://blog.csdn.net/kikikind/article/details/6266101" target="_blank" rel="external">etag与http缓存</a> ）</li>
+<li>Response 就是服务器返回的内容  返回的内容就交给浏览器去解析和处理了。</li>
+<li>Timing<br>[image:6940E5B8-1711-4E9C-91C6-5BFFB278A0DA-674-000003B35B53FF72/下载.png]<br>Queueing 文件排序需要的时间<br>Stalled  是浏览器得到要发出这个请求的指令到请求可以发出的等待时间，一般是代理协商、以及等待可复用的TCP连接释放的时间，不包括DNS查询、建立TCP连接等时间等<br>Proxy Negotiation  处理代理的时间。  （这个字段其实也是有的，只是图上没表现出来）<br>DNS Lookup  页面上每一个新域都需要解析。 有两种情况，这个时间为空（1、有dns缓存 2、hosts文件里面有写域名和地址的对应关系）<br>Initial connection  建立TCP连接的时间，就相当于客户端从发请求开始到TCP握手结束这一段。<br>SSl （https 数据加密协议）这个字段有一些就没有，ssl这块比tcp协议复杂一些，因为涉及到传输数据的安全性  参考 <a href="http://www.wosign.com/faq/faq2016-0309-04.htm" target="_blank" rel="external">TLS/SSL 握手过程</a></li>
+</ol>
+<p>Request sent  请求发送所需要的时间，即请求内容从第一个字节开始计算到最后一个字节传完。 即请求数据的上传时间，这部分通常会很短。<br>Waiting  这部分就是请求发送出去后，到接收从服务器返回的第一个字节数据。<br>Content Download 客户端下载服务器返回的数据所用的时间（即从第一字节到下载完成）</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;TCP-IP-HTTP-协议-详解&quot;&gt;&lt;a href=&quot;#TCP-IP-HTTP-协议-详解&quot; class=&quot;headerlink&quot; title=&quot;TCP/IP  HTTP 协议   详解&quot;&gt;&lt;/a&gt;TCP/IP  HTTP 协议   详解&lt;/h1&gt;&lt;h2 id=&quot;tcp-ip&quot;&gt;&lt;a href=&quot;#tcp-ip&quot; class=&quot;headerlink&quot; title=&quot;tcp/ip&quot;&gt;&lt;/a&gt;tcp/ip&lt;/h2&gt;&lt;p&gt;三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。&lt;/p&gt;
+&lt;p&gt;握手三部曲：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;客户端(syn=j)   ——&amp;gt;服务端     &lt;/li&gt;
+&lt;li&gt;服务端（syn=k,ack=j+1）——&amp;gt; 客户端&lt;/li&gt;
+&lt;li&gt;客户端（ack=k+1）——&amp;gt; 服务端&lt;br&gt;如果这三步都成功则tcp连接成功，就可以发数据包了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送syn，因为ip和端口都是不存在的，所以服务器发送出去之后，就再也接收不到客户端的回应了。这样服务器会在那里等待以至于超时；一两个超时不会造成问题，但如果是 syn flood 的话，服务器就会有一堆半连接的tcp，就会造成堵塞。&lt;/p&gt;
+&lt;p&gt;网上有很多syn攻击的工具，hping&lt;br&gt;mac弄起来不是特别方便，先放着，有时间再下工具来测了。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="blog.calouni.win/2017/04/05/virtual_keyboard/"/>
+    <id>blog.calouni.win/2017/04/05/virtual_keyboard/</id>
+    <published>2017-04-05T06:06:36.000Z</published>
+    <updated>2017-05-16T09:24:44.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="虚拟键盘的一些问题"><a href="#虚拟键盘的一些问题" class="headerlink" title="虚拟键盘的一些问题"></a>虚拟键盘的一些问题</h1><p>移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。</p>
+<p>1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况<br>解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">setTimeout(function () &#123;</div><div class="line">  $(&apos;#dl_app img&apos;).hide();</div><div class="line">&#125;, 100);</div><div class="line"></div><div class="line">window.alert = function (msg) &#123;</div><div class="line">  $(&apos;body&apos;).append(&apos;&lt;div&gt;&apos; + msg + &apos;&lt;/div&gt;&apos;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">window.res = null;</div><div class="line">var i = 0;</div><div class="line"></div><div class="line">function fixedWatch(el) &#123;</div><div class="line">  alert(i++);</div><div class="line">  if(document.activeElement.nodeName == &apos;INPUT&apos;)&#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;static&apos;);</div><div class="line">  &#125; else &#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;fixed&apos;);</div><div class="line">    if(window.res ) &#123; clearInterval(window.res ); window.res  = null; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$(&apos;input&apos;).focus(function () &#123;</div><div class="line">  if(!window.res) &#123;</div><div class="line">    fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    window.res = setInterval(function () &#123;</div><div class="line">      fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    &#125;, 500);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>2、当页面初始化时，要自动聚焦input，弹出虚拟键盘，这做不到。<br>网上提供的模拟用户点击之类都是无效的，先mark，有了好方法之后再补充。弹出的条件是必须要用户实际有操作。</p>
+<p>h5页面做不到，但内嵌在app里面input只要写了focus事件就能聚焦调起虚拟键盘。如果是搜索框，虚拟键盘输入时右下角为换行键，如果点换行也是能提交input的搜索的，但是虚拟键盘不能自动缩回去。需要做的是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(document).keydown(function (event) &#123;</div><div class="line">      if (event.keyCode == 13) &#123;</div><div class="line">        btnSearch.click(); //触发搜索按钮的点击</div><div class="line">        iptSearch.blur(); //input 失焦</div><div class="line">        return false; //可以阻止浏览器默认事件等</div><div class="line">      &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;虚拟键盘的一些问题&quot;&gt;&lt;a href=&quot;#虚拟键盘的一些问题&quot; class=&quot;headerlink&quot; title=&quot;虚拟键盘的一些问题&quot;&gt;&lt;/a&gt;虚拟键盘的一些问题&lt;/h1&gt;&lt;p&gt;移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。&lt;/p&gt;
+&lt;p&gt;1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况&lt;br&gt;解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;setTimeout(function () &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  $(&amp;apos;#dl_app img&amp;apos;).hide();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;, 100);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;window.alert = function (msg) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  $(&amp;apos;body&amp;apos;).append(&amp;apos;&amp;lt;div&amp;gt;&amp;apos; + msg + &amp;apos;&amp;lt;/div&amp;gt;&amp;apos;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;window.res = null;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;var i = 0;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;function fixedWatch(el) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  alert(i++);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  if(document.activeElement.nodeName == &amp;apos;INPUT&amp;apos;)&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    el.css(&amp;apos;position&amp;apos;, &amp;apos;static&amp;apos;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125; else &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    el.css(&amp;apos;position&amp;apos;, &amp;apos;fixed&amp;apos;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if(window.res ) &amp;#123; clearInterval(window.res ); window.res  = null; &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;$(&amp;apos;input&amp;apos;).focus(function () &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  if(!window.res) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    fixedWatch($(&amp;apos;#headerview header&amp;apos;));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    window.res = setInterval(function () &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      fixedWatch($(&amp;apos;#headerview header&amp;apos;));&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;, 500);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

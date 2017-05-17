@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="浏览器,兼容," />
 
 
 
@@ -92,15 +92,31 @@
 
 
 
-<meta name="description" content="just do it">
-<meta property="og:type" content="website">
-<meta property="og:title" content="fangjiale.github.io">
-<meta property="og:url" content="blog.calouni.win/index.html">
+<meta name="description" content="页面元素结构如下：
+&amp;lt;div class=&amp;quot;banner&amp;quot;&amp;gt;
+    &amp;lt;ul class=&amp;quot;banner-inner&amp;quot;&amp;gt;
+        &amp;lt;li class=&amp;quot;banner-item&amp;quot;&amp;gt;
+    &amp;lt;/ul&amp;gt;
+    &amp;lt;div class=&amp;quot;switch banner-swit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多图滑动兼容浏览器默认行为">
+<meta property="og:url" content="blog.calouni.win/2017/04/20/carousel/index.html">
 <meta property="og:site_name" content="fangjiale.github.io">
-<meta property="og:description" content="just do it">
+<meta property="og:description" content="页面元素结构如下：
+&amp;lt;div class=&amp;quot;banner&amp;quot;&amp;gt;
+    &amp;lt;ul class=&amp;quot;banner-inner&amp;quot;&amp;gt;
+        &amp;lt;li class=&amp;quot;banner-item&amp;quot;&amp;gt;
+    &amp;lt;/ul&amp;gt;
+    &amp;lt;div class=&amp;quot;switch banner-swit">
+<meta property="og:updated_time" content="2017-05-17T02:13:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fangjiale.github.io">
-<meta name="twitter:description" content="just do it">
+<meta name="twitter:title" content="多图滑动兼容浏览器默认行为">
+<meta name="twitter:description" content="页面元素结构如下：
+&amp;lt;div class=&amp;quot;banner&amp;quot;&amp;gt;
+    &amp;lt;ul class=&amp;quot;banner-inner&amp;quot;&amp;gt;
+        &amp;lt;li class=&amp;quot;banner-item&amp;quot;&amp;gt;
+    &amp;lt;/ul&amp;gt;
+    &amp;lt;div class=&amp;quot;switch banner-swit">
 
 
 
@@ -128,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="blog.calouni.win/"/>
+  <link rel="canonical" href="blog.calouni.win/2017/04/20/carousel/"/>
 
 
 
 
 
-  <title>fangjiale.github.io</title>
+  <title>多图滑动兼容浏览器默认行为 | fangjiale.github.io</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -160,9 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,9 +280,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -294,9 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/20/carousel/" itemprop="url">多图滑动兼容浏览器默认行为</a></h1>
+          <h1 class="post-title" itemprop="name headline">多图滑动兼容浏览器默认行为</h1>
         
 
         <div class="post-meta">
@@ -343,8 +355,7 @@
       
 
       
-        
-          <p>页面元素结构如下：</p>
+        <p>页面元素结构如下：</p>
 <pre><code>&lt;div class=&quot;banner&quot;&gt;
     &lt;ul class=&quot;banner-inner&quot;&gt;
         &lt;li class=&quot;banner-item&quot;&gt;
@@ -355,289 +366,261 @@
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre><p>一般浏览器表现良好，但是碰到qq，uc等含有左滑右滑都会前进后退行为的浏览器就会不太友好。 这明显是浏览器默认的行为，可以通过e.preventDefault(); 来禁止，经过调试，只需在touchmove的时候禁止就可以了。 刚开始禁止的是banner-inner这个div的touchmove，因为有关滑动的操作都是绑在这个元素上面。这样之后滑动touchmove的时候表现良好，但松手后，banner-inner进行transration时就还是会触发浏览器默认行为。 就在想无论是否在动画过程中，触发的不都是banner-inner这个元素的touchmove事件，而且已经禁止默认事件了，为什么还会有浏览器默认行为呢。 经过多次尝试与监听，发现动画过程中，用户触发的是banner-inner的父级，也就是banner元素的事件。 所以解决办法是添加了banner的touchmove事件监听，就是下面代码中加粗的那部分，禁止默认事件即可。<br>下面多图组件的代码</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/20/carousel/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+<a id="more"></a>
+<pre><code class="C++">(function($){
+  var $window = $(window);
+  var defaultOpts = {
+      wrap: &#39;.banner-inner&#39;,
+      item: &#39;.banner-item&#39;,
+      indicator: &#39;.banner-switch&#39;,
+      cur: 0,
+      duration: 0.5,      // 动画持续时间 单位s
+      delay: 500         // 动画执行间隔 单位s
+    };
+
+  var Carousel = function (obj, opts){
+    this.timer = null;
+    this.init(obj, opts);
+  }
+
+  Carousel.prototype = {
+    play: function() {
+      var _this = this;
+      _this.timer = setInterval(function() {
+        _this.turnItem(1);
+      }, _this.opts.delay * 1000);
+    },
+    turnItem: function(step) {
+      var _this = this;
+      var opts = _this.opts;
+      if(!opts.isLock) {
+        opts.pos += step;//-1  step 0 pos -2
+        opts.cur = _this.resetVal(opts.cur + step);//2
+        var next = _this.resetVal(opts.cur + step);//1 2
+
+        clearInterval(_this.timer);
+        _this.$item.eq(opts.cur).css({left: opts.pos * opts.itemW + &#39;px&#39;});
+        _this.$item.eq(next).css({left: (opts.pos + step) * opts.itemW + &#39;px&#39;});
+        _this.$wrap.css({transition: &#39;transform &#39; + opts.duration + &#39;s&#39;, transform: &#39;translate3d(&#39; + opts.pos * opts.itemW * -1 + &#39;px,0,0)&#39;});
+        //_this.$indicator.css({transition: &#39;transform &#39; + opts.duration / 2 + &#39;s&#39;, transform: &#39;translate3d(&#39; + opts.pos % opts.indicatorCount * 100 + &#39;%,0,0)&#39;});
+        if(opts.indicatorCount&lt;3){
+          step &amp;&amp; _this.$indicator.find(&#39;.cur&#39;).removeClass(&#39;cur&#39;).siblings().addClass(&#39;cur&#39;);
+        }else{
+          _this.$indicator.find(&#39;.switch-item&#39;).removeClass(&#39;cur&#39;);
+          _this.$indicator.find(&#39;.switch-item&#39;).eq(opts.cur).addClass(&#39;cur&#39;);
+        }
+      }
+    },
+    resetVal: function(val) {
+      var itemCount = this.opts.itemCount;
+      if(val &gt; itemCount - 1) {
+        val = 0;
+      }
+      else if(val &lt; 0) {
+        val = itemCount - 1;
+      }
+      return val;
+    },
+    touchEvent: function() {
+      var _this = this;
+      // $window.on(&#39;resize&#39;, _this.refresh(_this));
+      $window.on(&#39;resize&#39;, _this.refresh(_this));
+
+      var sx = sy = ex = ey = 0;
+
+      _this.$wrap.on(&#39;touchstart&#39;, function(e) {
+                    var touch = e.originalEvent.changedTouches[0];
+                    sx = touch.pageX;
+                    sy = touch.pageY;
+                    clearInterval(_this.timer);
+                }).on(&#39;touchmove&#39;, function(e){
+                    var touch = e.originalEvent.changedTouches[0];
+                    var x = touch.pageX;
+                    var y = touch.pageY;
+
+                    if (Math.abs(x-sx) &gt; Math.abs(y-sy) * 2) {
+                      _this.$wrap.css({transition: &#39;transform 0s&#39;, transform: &#39;translate3d(&#39; + (_this.opts.pos * _this.opts.itemW * -1 + (x - sx)) + &#39;px,0,0)&#39;});
+                      e.preventDefault();
+                    }
+                }).on(&#39;touchend&#39;, function(e){
+                    var touch = e.originalEvent.changedTouches[0];
+                    ex = touch.pageX;
+                    ey = touch.pageY;
+                    var x = ex - sx ;
+                    var _x = Math.abs(x);
+                    var step = 0;
+                    if(_x &gt; Math.abs(ey - sy) &amp;&amp; _x &gt; 80) {
+                      step = x &gt; 0 ? -1 : 1;
+                    }
+                    _this.turnItem(step);
+                    _this.play();
+                });
+
+      _this.$box.on(&#39;touchmove&#39;, function(e){
+        var touch = e.originalEvent.changedTouches[0];
+        var x = touch.pageX;
+        var y = touch.pageY;
+        if (Math.abs(x-sx) &gt; Math.abs(y-sy) * 2) {
+          e.preventDefault();       
+        }
+      })
+    },
+    initView: function(obj, options) {
+      //test
+      var _this = this;
+      var opts = $.extend({}, defaultOpts, options);
+
+      opts.itemCount = 0;         //  轮播item个数
+      opts.itemW = 0;             //  轮播item宽度
+      opts.indicatorCount = 0;    //  控制器item个数
+      opts.cur = 0;               //  当前item显示位置
+      opts.pos = 0;               //  当前容器显示位置
+      opts.isLock = false;        //  lock
+
+      this.$box = $(obj);
+      this.$wrap = this.$box.find(opts.wrap);
+      this.$item = this.$wrap.find(opts.item);
+      this.$indicator = this.$box.find(opts.indicator);
+
+      opts.itemCount = opts.indicatorCount = this.$item.length;
+      opts.itemW = this.$box.width();
+
+      if(opts.itemCount &lt; 2){
+        return false;
+      }
+      else if(opts.itemCount &lt; 3){
+        this.$item.clone().appendTo(this.$wrap);
+        this.$item = this.$wrap.find(opts.item);
+        opts.itemCount = this.$item.length;
+      }
+
+      // 初始化item位置
+      for(var i = 0 ; i &lt; opts.itemCount - 1 ; i++) {
+        this.$item.eq(i).css({left: i * opts.itemW + &#39;px&#39;});
+      }
+      this.$item.eq(i).css({left: -1 * opts.itemW + &#39;px&#39;});
+
+      // 初始化容器
+      this.$wrap.css({transition: &#39;transform &#39; + opts.duration + &#39;s&#39;, transform: &#39;translate3d(0,0,0)&#39;});
+
+      // 初始化控制器
+      this.$indicator.width(100 / opts.indicatorCount + &#39;%&#39;);
+
+      this.opts = opts;
+
+      return true;
+    },
+    init: function(obj, opts) {
+      if(!this.initView(obj, opts)) {
+        return ;
+      }
+      this.touchEvent();
+      this.play();
+    },
+    refresh: function() {
+      this.opts.itemW = this.$box.width();
+      this.opts.isLock = false;
+    },
+    _throttle: function(fn, delay, duration, cxt) {
+      var timer = null;
+      var t_start;
+      return function() {
+        var args = arguments;
+        var t_curr = +new Date();
+
+        clearTimeout(timer);
+        cxt.opts.isLock = true;
+
+        if (!t_start) {
+          t_start = t_curr;
+        }
+        if (t_curr - t_start &gt;= duration) {
+          fn.apply(cxt, args);
+          t_start = t_curr;
+        } else {
+          timer = setTimeout(function() {
+            fn.apply(cxt, args);
+          }, delay);
+        }
+      };
+    }
+  };
+  $.fn.Carousel = function(opts) {
+    return this.each(function(i){
+      !$(this).data(&#39;carousel&#39;) &amp;&amp; $(this).data(&#39;carousel&#39;, new Carousel(this, opts));
+    });
+  }
+})(jQuery);
+</code></pre>
+
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/17/http/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fangjiale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fangjiale.github.io">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/17/http/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T10:39:32+08:00">
-                2017-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/浏览器/" rel="tag"># 浏览器</a>
           
-            
+            <a href="/tags/兼容/" rel="tag"># 兼容</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          <h1 id="TCP-IP-HTTP-协议-详解"><a href="#TCP-IP-HTTP-协议-详解" class="headerlink" title="TCP/IP  HTTP 协议   详解"></a>TCP/IP  HTTP 协议   详解</h1><h2 id="tcp-ip"><a href="#tcp-ip" class="headerlink" title="tcp/ip"></a>tcp/ip</h2><p>三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。</p>
-<p>握手三部曲：</p>
-<ol>
-<li>客户端(syn=j)   ——&gt;服务端     </li>
-<li>服务端（syn=k,ack=j+1）——&gt; 客户端</li>
-<li>客户端（ack=k+1）——&gt; 服务端<br>如果这三步都成功则tcp连接成功，就可以发数据包了。</li>
-</ol>
-<p>正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送syn，因为ip和端口都是不存在的，所以服务器发送出去之后，就再也接收不到客户端的回应了。这样服务器会在那里等待以至于超时；一两个超时不会造成问题，但如果是 syn flood 的话，服务器就会有一堆半连接的tcp，就会造成堵塞。</p>
-<p>网上有很多syn攻击的工具，hping<br>mac弄起来不是特别方便，先放着，有时间再下工具来测了。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/17/http/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/17/http/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/05/virtual_keyboard/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fangjiale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fangjiale.github.io">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/05/virtual_keyboard/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-05T14:06:36+08:00">
-                2017-04-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="虚拟键盘的一些问题"><a href="#虚拟键盘的一些问题" class="headerlink" title="虚拟键盘的一些问题"></a>虚拟键盘的一些问题</h1><p>移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。</p>
-<p>1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况<br>解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">setTimeout(function () &#123;</div><div class="line">  $(&apos;#dl_app img&apos;).hide();</div><div class="line">&#125;, 100);</div><div class="line"></div><div class="line">window.alert = function (msg) &#123;</div><div class="line">  $(&apos;body&apos;).append(&apos;&lt;div&gt;&apos; + msg + &apos;&lt;/div&gt;&apos;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">window.res = null;</div><div class="line">var i = 0;</div><div class="line"></div><div class="line">function fixedWatch(el) &#123;</div><div class="line">  alert(i++);</div><div class="line">  if(document.activeElement.nodeName == &apos;INPUT&apos;)&#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;static&apos;);</div><div class="line">  &#125; else &#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;fixed&apos;);</div><div class="line">    if(window.res ) &#123; clearInterval(window.res ); window.res  = null; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$(&apos;input&apos;).focus(function () &#123;</div><div class="line">  if(!window.res) &#123;</div><div class="line">    fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    window.res = setInterval(function () &#123;</div><div class="line">      fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    &#125;, 500);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/05/virtual_keyboard/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -645,6 +628,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -830,6 +817,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
