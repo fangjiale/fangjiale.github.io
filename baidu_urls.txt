@@ -1,1 +1,3 @@
 blog.calouni.win/2017/04/22/virtual_keyboard/
+blog.calouni.win/2017/04/20/carousel/
+blog.calouni.win/2017/04/10/http/
