@@ -4,14 +4,16 @@
 
     
   <url>
-    <loc>blog.calouni.win/virtual_keyboard/</loc>
-    <lastmod>2017-05-17T06:53:21.000Z</lastmod>
+    <loc>blog.calouni.win/carousel/</loc>
+    <lastmod>2017-05-17T09:53:10.000Z</lastmod>
     <data>
         <display>
-        <title>虚拟键盘的一些问题</title>
-        <pubTime>2017-04-21T22:49:50.000Z</pubTime>
+        <title>多图滑动兼容浏览器默认行为</title>
+        <pubTime>2017-04-19T22:49:50.000Z</pubTime>
         
-        <tag>虚拟键盘</tag>
+        <tag>浏览器</tag>
+         
+        <tag>兼容</tag>
          
          
            
@@ -21,16 +23,14 @@
 
     
   <url>
-    <loc>blog.calouni.win/carousel/</loc>
-    <lastmod>2017-05-17T06:52:27.000Z</lastmod>
+    <loc>blog.calouni.win/virtual_keyboard/</loc>
+    <lastmod>2017-05-17T06:53:21.000Z</lastmod>
     <data>
         <display>
-        <title>多图滑动兼容浏览器默认行为</title>
-        <pubTime>2017-04-19T22:49:50.000Z</pubTime>
+        <title>虚拟键盘的一些问题</title>
+        <pubTime>2017-04-21T22:49:50.000Z</pubTime>
         
-        <tag>浏览器</tag>
-         
-        <tag>兼容</tag>
+        <tag>虚拟键盘</tag>
          
          
            
