@@ -93,31 +93,16 @@
 
 
 
-<meta name="description" content="页面元素结构如下：
-&amp;lt;div class=&amp;quot;banner&amp;quot;&amp;gt;
-    &amp;lt;ul class=&amp;quot;banner-inner&amp;quot;&amp;gt;
-        &amp;lt;li class=&amp;quot;banner-item&amp;quot;&amp;gt;
-    &amp;lt;/ul&amp;gt;
-    &amp;lt;div class=&amp;quot;switch banner-swit">
+<meta name="description" content="页面元素结构如下：123456789&amp;lt;div class=&quot;banner&quot;&amp;gt;	&amp;lt;ul class=&quot;banner-inner&quot;&amp;gt;		&amp;lt;li class=&quot;banner-item&quot;&amp;gt;	&amp;lt;/ul&amp;gt;	&amp;lt;div class=&quot;switch banner-switch&quot;&amp;gt;		&amp;lt;span class=&quot;switch-item cur&quot;&amp;gt;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多图滑动兼容浏览器默认行为">
 <meta property="og:url" content="blog.calouni.win/2017/04/20/carousel/index.html">
 <meta property="og:site_name" content="blog.calouni.win">
-<meta property="og:description" content="页面元素结构如下：
-&amp;lt;div class=&amp;quot;banner&amp;quot;&amp;gt;
-    &amp;lt;ul class=&amp;quot;banner-inner&amp;quot;&amp;gt;
-        &amp;lt;li class=&amp;quot;banner-item&amp;quot;&amp;gt;
-    &amp;lt;/ul&amp;gt;
-    &amp;lt;div class=&amp;quot;switch banner-swit">
+<meta property="og:description" content="页面元素结构如下：123456789&amp;lt;div class=&quot;banner&quot;&amp;gt;	&amp;lt;ul class=&quot;banner-inner&quot;&amp;gt;		&amp;lt;li class=&quot;banner-item&quot;&amp;gt;	&amp;lt;/ul&amp;gt;	&amp;lt;div class=&quot;switch banner-switch&quot;&amp;gt;		&amp;lt;span class=&quot;switch-item cur&quot;&amp;gt;&amp;">
 <meta property="og:updated_time" content="2017-05-17T02:13:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多图滑动兼容浏览器默认行为">
-<meta name="twitter:description" content="页面元素结构如下：
-&amp;lt;div class=&amp;quot;banner&amp;quot;&amp;gt;
-    &amp;lt;ul class=&amp;quot;banner-inner&amp;quot;&amp;gt;
-        &amp;lt;li class=&amp;quot;banner-item&amp;quot;&amp;gt;
-    &amp;lt;/ul&amp;gt;
-    &amp;lt;div class=&amp;quot;switch banner-swit">
+<meta name="twitter:description" content="页面元素结构如下：123456789&amp;lt;div class=&quot;banner&quot;&amp;gt;	&amp;lt;ul class=&quot;banner-inner&quot;&amp;gt;		&amp;lt;li class=&quot;banner-item&quot;&amp;gt;	&amp;lt;/ul&amp;gt;	&amp;lt;div class=&quot;switch banner-switch&quot;&amp;gt;		&amp;lt;span class=&quot;switch-item cur&quot;&amp;gt;&amp;">
 
 
 
@@ -419,204 +404,10 @@
       
 
       
-        <p>页面元素结构如下：</p>
-<pre><code>&lt;div class=&quot;banner&quot;&gt;
-    &lt;ul class=&quot;banner-inner&quot;&gt;
-        &lt;li class=&quot;banner-item&quot;&gt;
-    &lt;/ul&gt;
-    &lt;div class=&quot;switch banner-switch&quot;&gt;
-        &lt;span class=&quot;switch-item cur&quot;&gt;&lt;/span&gt;
-        &lt;span class=&quot;switch-item&quot;&gt;&lt;/span&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p>一般浏览器表现良好，但是碰到qq，uc等含有左滑右滑都会前进后退行为的浏览器就会不太友好。 这明显是浏览器默认的行为，可以通过e.preventDefault(); 来禁止，经过调试，只需在touchmove的时候禁止就可以了。 刚开始禁止的是banner-inner这个div的touchmove，因为有关滑动的操作都是绑在这个元素上面。这样之后滑动touchmove的时候表现良好，但松手后，banner-inner进行transration时就还是会触发浏览器默认行为。 就在想无论是否在动画过程中，触发的不都是banner-inner这个元素的touchmove事件，而且已经禁止默认事件了，为什么还会有浏览器默认行为呢。 经过多次尝试与监听，发现动画过程中，用户触发的是banner-inner的父级，也就是banner元素的事件。 所以解决办法是添加了banner的touchmove事件监听，就是下面代码中加粗的那部分，禁止默认事件即可。<br>下面多图组件的代码</p>
+        <p>页面元素结构如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"banner"</span>&gt;</div><div class="line">	<span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"banner-inner"</span>&gt;</span></span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"banner-item"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"switch banner-switch"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"switch-item cur"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"switch-item"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>一般浏览器表现良好，但是碰到qq，uc等含有左滑右滑都会前进后退行为的浏览器就会不太友好。 这明显是浏览器默认的行为，可以通过e.preventDefault(); 来禁止，经过调试，只需在touchmove的时候禁止就可以了。 刚开始禁止的是banner-inner这个div的touchmove，因为有关滑动的操作都是绑在这个元素上面。这样之后滑动touchmove的时候表现良好，但松手后，banner-inner进行transration时就还是会触发浏览器默认行为。 就在想无论是否在动画过程中，触发的不都是banner-inner这个元素的touchmove事件，而且已经禁止默认事件了，为什么还会有浏览器默认行为呢。 经过多次尝试与监听，发现动画过程中，用户触发的是banner-inner的父级，也就是banner元素的事件。 所以解决办法是添加了banner的touchmove事件监听，就是下面代码中加粗的那部分，禁止默认事件即可。<br>下面多图组件的代码</p>
 <a id="more"></a>
-<pre><code class="C++">(function($){
-  var $window = $(window);
-  var defaultOpts = {
-      wrap: &#39;.banner-inner&#39;,
-      item: &#39;.banner-item&#39;,
-      indicator: &#39;.banner-switch&#39;,
-      cur: 0,
-      duration: 0.5,      // 动画持续时间 单位s
-      delay: 500         // 动画执行间隔 单位s
-    };
-
-  var Carousel = function (obj, opts){
-    this.timer = null;
-    this.init(obj, opts);
-  }
-
-  Carousel.prototype = {
-    play: function() {
-      var _this = this;
-      _this.timer = setInterval(function() {
-        _this.turnItem(1);
-      }, _this.opts.delay * 1000);
-    },
-    turnItem: function(step) {
-      var _this = this;
-      var opts = _this.opts;
-      if(!opts.isLock) {
-        opts.pos += step;//-1  step 0 pos -2
-        opts.cur = _this.resetVal(opts.cur + step);//2
-        var next = _this.resetVal(opts.cur + step);//1 2
-
-        clearInterval(_this.timer);
-        _this.$item.eq(opts.cur).css({left: opts.pos * opts.itemW + &#39;px&#39;});
-        _this.$item.eq(next).css({left: (opts.pos + step) * opts.itemW + &#39;px&#39;});
-        _this.$wrap.css({transition: &#39;transform &#39; + opts.duration + &#39;s&#39;, transform: &#39;translate3d(&#39; + opts.pos * opts.itemW * -1 + &#39;px,0,0)&#39;});
-        //_this.$indicator.css({transition: &#39;transform &#39; + opts.duration / 2 + &#39;s&#39;, transform: &#39;translate3d(&#39; + opts.pos % opts.indicatorCount * 100 + &#39;%,0,0)&#39;});
-        if(opts.indicatorCount&lt;3){
-          step &amp;&amp; _this.$indicator.find(&#39;.cur&#39;).removeClass(&#39;cur&#39;).siblings().addClass(&#39;cur&#39;);
-        }else{
-          _this.$indicator.find(&#39;.switch-item&#39;).removeClass(&#39;cur&#39;);
-          _this.$indicator.find(&#39;.switch-item&#39;).eq(opts.cur).addClass(&#39;cur&#39;);
-        }
-      }
-    },
-    resetVal: function(val) {
-      var itemCount = this.opts.itemCount;
-      if(val &gt; itemCount - 1) {
-        val = 0;
-      }
-      else if(val &lt; 0) {
-        val = itemCount - 1;
-      }
-      return val;
-    },
-    touchEvent: function() {
-      var _this = this;
-      // $window.on(&#39;resize&#39;, _this.refresh(_this));
-      $window.on(&#39;resize&#39;, _this.refresh(_this));
-
-      var sx = sy = ex = ey = 0;
-
-      _this.$wrap.on(&#39;touchstart&#39;, function(e) {
-                    var touch = e.originalEvent.changedTouches[0];
-                    sx = touch.pageX;
-                    sy = touch.pageY;
-                    clearInterval(_this.timer);
-                }).on(&#39;touchmove&#39;, function(e){
-                    var touch = e.originalEvent.changedTouches[0];
-                    var x = touch.pageX;
-                    var y = touch.pageY;
-
-                    if (Math.abs(x-sx) &gt; Math.abs(y-sy) * 2) {
-                      _this.$wrap.css({transition: &#39;transform 0s&#39;, transform: &#39;translate3d(&#39; + (_this.opts.pos * _this.opts.itemW * -1 + (x - sx)) + &#39;px,0,0)&#39;});
-                      e.preventDefault();
-                    }
-                }).on(&#39;touchend&#39;, function(e){
-                    var touch = e.originalEvent.changedTouches[0];
-                    ex = touch.pageX;
-                    ey = touch.pageY;
-                    var x = ex - sx ;
-                    var _x = Math.abs(x);
-                    var step = 0;
-                    if(_x &gt; Math.abs(ey - sy) &amp;&amp; _x &gt; 80) {
-                      step = x &gt; 0 ? -1 : 1;
-                    }
-                    _this.turnItem(step);
-                    _this.play();
-                });
-
-      _this.$box.on(&#39;touchmove&#39;, function(e){
-        var touch = e.originalEvent.changedTouches[0];
-        var x = touch.pageX;
-        var y = touch.pageY;
-        if (Math.abs(x-sx) &gt; Math.abs(y-sy) * 2) {
-          e.preventDefault();       
-        }
-      })
-    },
-    initView: function(obj, options) {
-      //test
-      var _this = this;
-      var opts = $.extend({}, defaultOpts, options);
-
-      opts.itemCount = 0;         //  轮播item个数
-      opts.itemW = 0;             //  轮播item宽度
-      opts.indicatorCount = 0;    //  控制器item个数
-      opts.cur = 0;               //  当前item显示位置
-      opts.pos = 0;               //  当前容器显示位置
-      opts.isLock = false;        //  lock
-
-      this.$box = $(obj);
-      this.$wrap = this.$box.find(opts.wrap);
-      this.$item = this.$wrap.find(opts.item);
-      this.$indicator = this.$box.find(opts.indicator);
-
-      opts.itemCount = opts.indicatorCount = this.$item.length;
-      opts.itemW = this.$box.width();
-
-      if(opts.itemCount &lt; 2){
-        return false;
-      }
-      else if(opts.itemCount &lt; 3){
-        this.$item.clone().appendTo(this.$wrap);
-        this.$item = this.$wrap.find(opts.item);
-        opts.itemCount = this.$item.length;
-      }
-
-      // 初始化item位置
-      for(var i = 0 ; i &lt; opts.itemCount - 1 ; i++) {
-        this.$item.eq(i).css({left: i * opts.itemW + &#39;px&#39;});
-      }
-      this.$item.eq(i).css({left: -1 * opts.itemW + &#39;px&#39;});
-
-      // 初始化容器
-      this.$wrap.css({transition: &#39;transform &#39; + opts.duration + &#39;s&#39;, transform: &#39;translate3d(0,0,0)&#39;});
-
-      // 初始化控制器
-      this.$indicator.width(100 / opts.indicatorCount + &#39;%&#39;);
-
-      this.opts = opts;
-
-      return true;
-    },
-    init: function(obj, opts) {
-      if(!this.initView(obj, opts)) {
-        return ;
-      }
-      this.touchEvent();
-      this.play();
-    },
-    refresh: function() {
-      this.opts.itemW = this.$box.width();
-      this.opts.isLock = false;
-    },
-    _throttle: function(fn, delay, duration, cxt) {
-      var timer = null;
-      var t_start;
-      return function() {
-        var args = arguments;
-        var t_curr = +new Date();
-
-        clearTimeout(timer);
-        cxt.opts.isLock = true;
-
-        if (!t_start) {
-          t_start = t_curr;
-        }
-        if (t_curr - t_start &gt;= duration) {
-          fn.apply(cxt, args);
-          t_start = t_curr;
-        } else {
-          timer = setTimeout(function() {
-            fn.apply(cxt, args);
-          }, delay);
-        }
-      };
-    }
-  };
-  $.fn.Carousel = function(opts) {
-    return this.each(function(i){
-      !$(this).data(&#39;carousel&#39;) &amp;&amp; $(this).data(&#39;carousel&#39;, new Carousel(this, opts));
-    });
-  }
-})(jQuery);
-</code></pre>
-
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div></pre></td><td class="code"><pre><div class="line">(function($)&#123;</div><div class="line">  var $window = $(window);</div><div class="line">  var defaultOpts = &#123;</div><div class="line">      wrap: '.banner-inner',</div><div class="line">      item: '.banner-item',</div><div class="line">      indicator: '.banner-switch',</div><div class="line">      cur: 0,</div><div class="line">      duration: 0.5,      // 动画持续时间 单位s</div><div class="line">      delay: 500         // 动画执行间隔 单位s</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">  var Carousel = function (obj, opts)&#123;</div><div class="line">    this.timer = null;</div><div class="line">    this.init(obj, opts);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  Carousel.prototype = &#123;</div><div class="line">    play: function() &#123;</div><div class="line">      var _this = this;</div><div class="line">      _this.timer = setInterval(function() &#123;</div><div class="line">        _this.turnItem(1);</div><div class="line">      &#125;, _this.opts.delay * 1000);</div><div class="line">    &#125;,</div><div class="line">    turnItem: function(step) &#123;</div><div class="line">      var _this = this;</div><div class="line">      var opts = _this.opts;</div><div class="line">      if(!opts.isLock) &#123;</div><div class="line">        opts.pos += step;//-1  step 0 pos -2</div><div class="line">        opts.cur = _this.resetVal(opts.cur + step);//2</div><div class="line">        var next = _this.resetVal(opts.cur + step);//1 2</div><div class="line"></div><div class="line">        clearInterval(_this.timer);</div><div class="line">        _this.$item.eq(opts.cur).css(&#123;left: opts.pos * opts.itemW + 'px'&#125;);</div><div class="line">        _this.$item.eq(next).css(&#123;left: (opts.pos + step) * opts.itemW + 'px'&#125;);</div><div class="line">        _this.$wrap.css(&#123;transition: 'transform ' + opts.duration + 's', transform: 'translate3d(' + opts.pos * opts.itemW * -1 + 'px,0,0)'&#125;);</div><div class="line">        //_this.$indicator.css(&#123;transition: 'transform ' + opts.duration / 2 + 's', transform: 'translate3d(' + opts.pos % opts.indicatorCount * 100 + '%,0,0)'&#125;);</div><div class="line">        if(opts.indicatorCount&lt;3)&#123;</div><div class="line">          step &amp;&amp; _this.$indicator.find('.cur').removeClass('cur').siblings().addClass('cur');</div><div class="line">        &#125;else&#123;</div><div class="line">          _this.$indicator.find('.switch-item').removeClass('cur');</div><div class="line">          _this.$indicator.find('.switch-item').eq(opts.cur).addClass('cur');</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    resetVal: function(val) &#123;</div><div class="line">      var itemCount = this.opts.itemCount;</div><div class="line">      if(val &gt; itemCount - 1) &#123;</div><div class="line">        val = 0;</div><div class="line">      &#125;</div><div class="line">      else if(val &lt; 0) &#123;</div><div class="line">        val = itemCount - 1;</div><div class="line">      &#125;</div><div class="line">      return val;</div><div class="line">    &#125;,</div><div class="line">    touchEvent: function() &#123;</div><div class="line">      var _this = this;</div><div class="line">      // $window.on('resize', _this.refresh(_this));</div><div class="line">      $window.on('resize', _this.refresh(_this));</div><div class="line"></div><div class="line">      var sx = sy = ex = ey = 0;</div><div class="line"></div><div class="line">      _this.$wrap.on('touchstart', function(e) &#123;</div><div class="line">                    var touch = e.originalEvent.changedTouches[0];</div><div class="line">                    sx = touch.pageX;</div><div class="line">                    sy = touch.pageY;</div><div class="line">                    clearInterval(_this.timer);</div><div class="line">                &#125;).on('touchmove', function(e)&#123;</div><div class="line">                    var touch = e.originalEvent.changedTouches[0];</div><div class="line">                    var x = touch.pageX;</div><div class="line">                    var y = touch.pageY;</div><div class="line"></div><div class="line">                    if (Math.abs(x-sx) &gt; Math.abs(y-sy) * 2) &#123;</div><div class="line">                      _this.$wrap.css(&#123;transition: 'transform 0s', transform: 'translate3d(' + (_this.opts.pos * _this.opts.itemW * -1 + (x - sx)) + 'px,0,0)'&#125;);</div><div class="line">                      e.preventDefault();</div><div class="line">                    &#125;</div><div class="line">                &#125;).on('touchend', function(e)&#123;</div><div class="line">                    var touch = e.originalEvent.changedTouches[0];</div><div class="line">                    ex = touch.pageX;</div><div class="line">                    ey = touch.pageY;</div><div class="line">                    var x = ex - sx ;</div><div class="line">                    var _x = Math.abs(x);</div><div class="line">                    var step = 0;</div><div class="line">                    if(_x &gt; Math.abs(ey - sy) &amp;&amp; _x &gt; 80) &#123;</div><div class="line">                      step = x &gt; 0 ? -1 : 1;</div><div class="line">                    &#125;</div><div class="line">                    _this.turnItem(step);</div><div class="line">                    _this.play();</div><div class="line">                &#125;);</div><div class="line"></div><div class="line">      _this.$box.on('touchmove', function(e)&#123;</div><div class="line">        var touch = e.originalEvent.changedTouches[0];</div><div class="line">        var x = touch.pageX;</div><div class="line">        var y = touch.pageY;</div><div class="line">        if (Math.abs(x-sx) &gt; Math.abs(y-sy) * 2) &#123;</div><div class="line">          e.preventDefault();       </div><div class="line">        &#125;</div><div class="line">      &#125;)</div><div class="line">    &#125;,</div><div class="line">    initView: function(obj, options) &#123;</div><div class="line">      //test</div><div class="line">      var _this = this;</div><div class="line">      var opts = $.extend(&#123;&#125;, defaultOpts, options);</div><div class="line"></div><div class="line">      opts.itemCount = 0;         //  轮播item个数</div><div class="line">      opts.itemW = 0;             //  轮播item宽度</div><div class="line">      opts.indicatorCount = 0;    //  控制器item个数</div><div class="line">      opts.cur = 0;               //  当前item显示位置</div><div class="line">      opts.pos = 0;               //  当前容器显示位置</div><div class="line">      opts.isLock = false;        //  lock</div><div class="line"></div><div class="line">      this.$box = $(obj);</div><div class="line">      this.$wrap = this.$box.find(opts.wrap);</div><div class="line">      this.$item = this.$wrap.find(opts.item);</div><div class="line">      this.$indicator = this.$box.find(opts.indicator);</div><div class="line"></div><div class="line">      opts.itemCount = opts.indicatorCount = this.$item.length;</div><div class="line">      opts.itemW = this.$box.width();</div><div class="line"></div><div class="line">      if(opts.itemCount &lt; 2)&#123;</div><div class="line">        return false;</div><div class="line">      &#125;</div><div class="line">      else if(opts.itemCount &lt; 3)&#123;</div><div class="line">        this.$item.clone().appendTo(this.$wrap);</div><div class="line">        this.$item = this.$wrap.find(opts.item);</div><div class="line">        opts.itemCount = this.$item.length;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      // 初始化item位置</div><div class="line">      for(var i = 0 ; i &lt; opts.itemCount - 1 ; i++) &#123;</div><div class="line">        this.$item.eq(i).css(&#123;left: i * opts.itemW + 'px'&#125;);</div><div class="line">      &#125;</div><div class="line">      this.$item.eq(i).css(&#123;left: -1 * opts.itemW + 'px'&#125;);</div><div class="line"></div><div class="line">      // 初始化容器</div><div class="line">      this.$wrap.css(&#123;transition: 'transform ' + opts.duration + 's', transform: 'translate3d(0,0,0)'&#125;);</div><div class="line"></div><div class="line">      // 初始化控制器</div><div class="line">      this.$indicator.width(100 / opts.indicatorCount + '%');</div><div class="line"></div><div class="line">      this.opts = opts;</div><div class="line"></div><div class="line">      return true;</div><div class="line">    &#125;,</div><div class="line">    init: function(obj, opts) &#123;</div><div class="line">      if(!this.initView(obj, opts)) &#123;</div><div class="line">        return ;</div><div class="line">      &#125;</div><div class="line">      this.touchEvent();</div><div class="line">      this.play();</div><div class="line">    &#125;,</div><div class="line">    refresh: function() &#123;</div><div class="line">      this.opts.itemW = this.$box.width();</div><div class="line">      this.opts.isLock = false;</div><div class="line">    &#125;,</div><div class="line">    _throttle: function(fn, delay, duration, cxt) &#123;</div><div class="line">      var timer = null;</div><div class="line">      var t_start;</div><div class="line">      return function() &#123;</div><div class="line">        var args = arguments;</div><div class="line">        var t_curr = +new Date();</div><div class="line"></div><div class="line">        clearTimeout(timer);</div><div class="line">        cxt.opts.isLock = true;</div><div class="line"></div><div class="line">        if (!t_start) &#123;</div><div class="line">          t_start = t_curr;</div><div class="line">        &#125;</div><div class="line">        if (t_curr - t_start &gt;= duration) &#123;</div><div class="line">          fn.apply(cxt, args);</div><div class="line">          t_start = t_curr;</div><div class="line">        &#125; else &#123;</div><div class="line">          timer = setTimeout(function() &#123;</div><div class="line">            fn.apply(cxt, args);</div><div class="line">          &#125;, delay);</div><div class="line">        &#125;</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">  $.fn.Carousel = function(opts) &#123;</div><div class="line">    return this.each(function(i)&#123;</div><div class="line">      !$(this).data('carousel') &amp;&amp; $(this).data('carousel', new Carousel(this, opts));</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
       
     </div>
 
