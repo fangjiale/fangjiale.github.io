@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="TCP/IP,HTTP," />
 
 
 
@@ -92,37 +92,37 @@
 
 
 
-<meta name="description" content="TCP/IP  HTTP 协议   详解tcp/ip三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。
+<meta name="description" content="tcp/ip三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。
 握手三部曲：
 
 客户端(syn=j)   ——&amp;gt;服务端     
 服务端（syn=k,ack=j+1）——&amp;gt; 客户端
 客户端（ack=k+1）——&amp;gt; 服务端如果这三步都成功则tcp连接成功，就可以发数据包了。
 
-正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端">
+正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fangjiale.github.io">
-<meta property="og:url" content="blog.calouni.win/2017/04/17/http/index.html">
+<meta property="og:title" content="TCP/IP  HTTP 协议   详解">
+<meta property="og:url" content="blog.calouni.win/2017/04/10/http/index.html">
 <meta property="og:site_name" content="fangjiale.github.io">
-<meta property="og:description" content="TCP/IP  HTTP 协议   详解tcp/ip三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。
+<meta property="og:description" content="tcp/ip三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。
 握手三部曲：
 
 客户端(syn=j)   ——&amp;gt;服务端     
 服务端（syn=k,ack=j+1）——&amp;gt; 客户端
 客户端（ack=k+1）——&amp;gt; 服务端如果这三步都成功则tcp连接成功，就可以发数据包了。
 
-正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端">
-<meta property="og:updated_time" content="2017-05-16T09:25:36.000Z">
+正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送">
+<meta property="og:updated_time" content="2017-05-17T04:37:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fangjiale.github.io">
-<meta name="twitter:description" content="TCP/IP  HTTP 协议   详解tcp/ip三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。
+<meta name="twitter:title" content="TCP/IP  HTTP 协议   详解">
+<meta name="twitter:description" content="tcp/ip三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。
 握手三部曲：
 
 客户端(syn=j)   ——&amp;gt;服务端     
 服务端（syn=k,ack=j+1）——&amp;gt; 客户端
 客户端（ack=k+1）——&amp;gt; 服务端如果这三步都成功则tcp连接成功，就可以发数据包了。
 
-正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端">
+正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="blog.calouni.win/2017/04/17/http/"/>
+  <link rel="canonical" href="blog.calouni.win/2017/04/10/http/"/>
 
 
 
 
 
-  <title> | fangjiale.github.io</title>
+  <title>TCP/IP  HTTP 协议   详解 | fangjiale.github.io</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -267,16 +267,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -341,7 +331,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/17/http/">
+    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/10/http/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fangjiale">
@@ -358,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">TCP/IP  HTTP 协议   详解</h1>
         
 
         <div class="post-meta">
@@ -370,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T10:39:32+08:00">
-                2017-04-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T06:49:50+08:00">
+                2017-04-10
               </time>
             
 
@@ -389,8 +379,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/17/http/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/17/http/" itemprop="commentCount"></span>
+                <a href="/2017/04/10/http/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/10/http/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -398,7 +388,7 @@
 
           
           
-             <span id="/2017/04/17/http/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2017/04/10/http/" class="leancloud_visitors" data-flag-title="TCP/IP  HTTP 协议   详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -426,7 +416,7 @@
       
 
       
-        <h1 id="TCP-IP-HTTP-协议-详解"><a href="#TCP-IP-HTTP-协议-详解" class="headerlink" title="TCP/IP  HTTP 协议   详解"></a>TCP/IP  HTTP 协议   详解</h1><h2 id="tcp-ip"><a href="#tcp-ip" class="headerlink" title="tcp/ip"></a>tcp/ip</h2><p>三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。</p>
+        <h2 id="tcp-ip"><a href="#tcp-ip" class="headerlink" title="tcp/ip"></a>tcp/ip</h2><p>三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。</p>
 <p>握手三部曲：</p>
 <ol>
 <li>客户端(syn=j)   ——&gt;服务端     </li>
@@ -514,6 +504,14 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/TCP-IP/" rel="tag"># TCP/IP</a>
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+        </div>
+      
 
       
         
@@ -522,10 +520,6 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/04/05/virtual_keyboard/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
-              </a>
             
           </div>
 
@@ -550,10 +544,10 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2017/04/17/http/"
-     data-title=""
+        <div class="ds-share flat" data-thread-key="2017/04/10/http/"
+     data-title="TCP/IP  HTTP 协议   详解"
      data-content=""
-     data-url="blog.calouni.win/2017/04/17/http/">
+     data-url="blog.calouni.win/2017/04/10/http/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -576,12 +570,15 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/04/17/http/"
-           data-title="" data-url="blog.calouni.win/2017/04/17/http/">
+      <div class="ds-thread" data-thread-key="2017/04/10/http/"
+           data-title="TCP/IP  HTTP 协议   详解" data-url="blog.calouni.win/2017/04/10/http/">
       </div>
     
   </div>
@@ -643,7 +640,7 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -685,7 +682,7 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-IP-HTTP-协议-详解"><span class="nav-number">1.</span> <span class="nav-text">TCP/IP  HTTP 协议   详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp-ip"><span class="nav-number">1.1.</span> <span class="nav-text">tcp/ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">1.2.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求过程"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">请求过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-几个部分"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">http 几个部分</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp-ip"><span class="nav-number">1.</span> <span class="nav-text">tcp/ip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">2.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http-1"><span class="nav-number">2.1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求过程"><span class="nav-number">2.1.1.</span> <span class="nav-text">请求过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-几个部分"><span class="nav-number">2.1.2.</span> <span class="nav-text">http 几个部分</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -713,13 +710,13 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">fangjiale</span>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="/sitemap.xml">Google网站地图</a></span>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span
 </div>
 
 
 
 
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="/sitemap.xml">Google网站地图</a></span>
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span
 
 <script>
 (function(){
@@ -1100,7 +1097,7 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
 
                   // select top N slices in content
 
-                  var upperBound = parseInt('3');
+                  var upperBound = parseInt('5');
                   if (upperBound >= 0) {
                     slicesOfContent = slicesOfContent.slice(0, upperBound);
                   }

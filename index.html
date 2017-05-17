@@ -247,16 +247,6 @@
           </a>
         </li>
       
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
 
       
         <li class="menu-item menu-item-search">
@@ -311,6 +301,174 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/22/virtual_keyboard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="fangjiale">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fangjiale.github.io">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/22/virtual_keyboard/" itemprop="url">虚拟键盘的一些问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-22T06:49:50+08:00">
+                2017-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/22/virtual_keyboard/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/22/virtual_keyboard/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/22/virtual_keyboard/" class="leancloud_visitors" data-flag-title="虚拟键盘的一些问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。</p>
+<p>1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况<br>解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。</p>
+<pre><code>setTimeout(function () {
+  $(&#39;#dl_app img&#39;).hide();
+}, 100);
+
+window.alert = function (msg) {
+  $(&#39;body&#39;).append(&#39;&lt;div&gt;&#39; + msg + &#39;&lt;/div&gt;&#39;)
+};
+
+window.res = null;
+var i = 0;
+
+function fixedWatch(el) {
+  alert(i++);
+  if(document.activeElement.nodeName == &#39;INPUT&#39;){
+    el.css(&#39;position&#39;, &#39;static&#39;);
+  } else {
+    el.css(&#39;position&#39;, &#39;fixed&#39;);
+    if(window.res ) { clearInterval(window.res ); window.res  = null; }
+  }
+}
+
+$(&#39;input&#39;).focus(function () {
+  if(!window.res) {
+    fixedWatch($(&#39;#headerview header&#39;));
+    window.res = setInterval(function () {
+      fixedWatch($(&#39;#headerview header&#39;));
+    }, 500);
+  }
+});
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/22/virtual_keyboard/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -468,7 +626,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/17/http/">
+    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/10/http/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fangjiale">
@@ -487,7 +645,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/17/http/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2017/04/10/http/" itemprop="url">TCP/IP  HTTP 协议   详解</a></h1>
         
 
         <div class="post-meta">
@@ -499,8 +657,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-17T10:39:32+08:00">
-                2017-04-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T06:49:50+08:00">
+                2017-04-10
               </time>
             
 
@@ -518,8 +676,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/17/http/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/17/http/" itemprop="commentCount"></span>
+                <a href="/2017/04/10/http/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/10/http/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -527,7 +685,7 @@
 
           
           
-             <span id="/2017/04/17/http/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2017/04/10/http/" class="leancloud_visitors" data-flag-title="TCP/IP  HTTP 协议   详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -556,7 +714,7 @@
 
       
         
-          <h1 id="TCP-IP-HTTP-协议-详解"><a href="#TCP-IP-HTTP-协议-详解" class="headerlink" title="TCP/IP  HTTP 协议   详解"></a>TCP/IP  HTTP 协议   详解</h1><h2 id="tcp-ip"><a href="#tcp-ip" class="headerlink" title="tcp/ip"></a>tcp/ip</h2><p>三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。</p>
+          <h2 id="tcp-ip"><a href="#tcp-ip" class="headerlink" title="tcp/ip"></a>tcp/ip</h2><p>三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。</p>
 <p>握手三部曲：</p>
 <ol>
 <li>客户端(syn=j)   ——&gt;服务端     </li>
@@ -567,145 +725,7 @@
 <p>网上有很多syn攻击的工具，hping<br>mac弄起来不是特别方便，先放着，有时间再下工具来测了。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/17/http/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/05/virtual_keyboard/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="fangjiale">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fangjiale.github.io">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/05/virtual_keyboard/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-05T14:06:36+08:00">
-                2017-04-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/05/virtual_keyboard/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/05/virtual_keyboard/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/04/05/virtual_keyboard/" class="leancloud_visitors" data-flag-title="">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="虚拟键盘的一些问题"><a href="#虚拟键盘的一些问题" class="headerlink" title="虚拟键盘的一些问题"></a>虚拟键盘的一些问题</h1><p>移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。</p>
-<p>1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况<br>解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">setTimeout(function () &#123;</div><div class="line">  $(&apos;#dl_app img&apos;).hide();</div><div class="line">&#125;, 100);</div><div class="line"></div><div class="line">window.alert = function (msg) &#123;</div><div class="line">  $(&apos;body&apos;).append(&apos;&lt;div&gt;&apos; + msg + &apos;&lt;/div&gt;&apos;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">window.res = null;</div><div class="line">var i = 0;</div><div class="line"></div><div class="line">function fixedWatch(el) &#123;</div><div class="line">  alert(i++);</div><div class="line">  if(document.activeElement.nodeName == &apos;INPUT&apos;)&#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;static&apos;);</div><div class="line">  &#125; else &#123;</div><div class="line">    el.css(&apos;position&apos;, &apos;fixed&apos;);</div><div class="line">    if(window.res ) &#123; clearInterval(window.res ); window.res  = null; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$(&apos;input&apos;).focus(function () &#123;</div><div class="line">  if(!window.res) &#123;</div><div class="line">    fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    window.res = setInterval(function () &#123;</div><div class="line">      fixedWatch($(&apos;#headerview header&apos;));</div><div class="line">    &#125;, 500);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/05/virtual_keyboard/#more" rel="contents">
+            <a class="btn" href="/2017/04/10/http/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -800,7 +820,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -854,13 +874,13 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">fangjiale</span>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="/sitemap.xml">Google网站地图</a></span>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span
 </div>
 
 
 
 
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="/sitemap.xml">Google网站地图</a></span>
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span><a href="/baidusitemap.xml">百度网站地图</a></span
 
 <script>
 (function(){
@@ -1237,7 +1257,7 @@
 
                   // select top N slices in content
 
-                  var upperBound = parseInt('3');
+                  var upperBound = parseInt('5');
                   if (upperBound >= 0) {
                     slicesOfContent = slicesOfContent.slice(0, upperBound);
                   }
