@@ -320,7 +320,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/22/virtual_keyboard/">
+    <link itemprop="mainEntityOfPage" href="blog.calouni.win/virtual_keyboard/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fangjiale">
@@ -339,7 +339,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/22/virtual_keyboard/" itemprop="url">虚拟键盘的一些问题</a></h2>
+                <a class="post-title-link" href="/virtual_keyboard/" itemprop="url">虚拟键盘的一些问题</a></h2>
         
 
         <div class="post-meta">
@@ -370,8 +370,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/22/virtual_keyboard/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/22/virtual_keyboard/" itemprop="commentCount"></span>
+                <a href="/virtual_keyboard/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="virtual_keyboard/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,7 +379,7 @@
 
           
           
-             <span id="/2017/04/22/virtual_keyboard/" class="leancloud_visitors" data-flag-title="虚拟键盘的一些问题">
+             <span id="/virtual_keyboard/" class="leancloud_visitors" data-flag-title="虚拟键盘的一些问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -412,7 +412,7 @@
 <p>1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况<br>解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="string">'#dl_app img'</span>).hide();</div><div class="line">&#125;, <span class="number">100</span>);</div><div class="line"></div><div class="line"><span class="built_in">window</span>.alert = <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</div><div class="line">  $(<span class="string">'body'</span>).append(<span class="string">'&lt;div&gt;'</span> + msg + <span class="string">'&lt;/div&gt;'</span>)</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">window</span>.res = <span class="literal">null</span>;</div><div class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fixedWatch</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">  alert(i++);</div><div class="line">  <span class="keyword">if</span>(<span class="built_in">document</span>.activeElement.nodeName == <span class="string">'INPUT'</span>)&#123;</div><div class="line">    el.css(<span class="string">'position'</span>, <span class="string">'static'</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    el.css(<span class="string">'position'</span>, <span class="string">'fixed'</span>);</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.res ) &#123; clearInterval(<span class="built_in">window</span>.res ); <span class="built_in">window</span>.res  = <span class="literal">null</span>; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$(<span class="string">'input'</span>).focus(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(!<span class="built_in">window</span>.res) &#123;</div><div class="line">    fixedWatch($(<span class="string">'#headerview header'</span>));</div><div class="line">    <span class="built_in">window</span>.res = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      fixedWatch($(<span class="string">'#headerview header'</span>));</div><div class="line">    &#125;, <span class="number">500</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/22/virtual_keyboard/#more" rel="contents">
+            <a class="btn" href="/virtual_keyboard/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -458,7 +458,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/20/carousel/">
+    <link itemprop="mainEntityOfPage" href="blog.calouni.win/carousel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fangjiale">
@@ -477,7 +477,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/20/carousel/" itemprop="url">多图滑动兼容浏览器默认行为</a></h2>
+                <a class="post-title-link" href="/carousel/" itemprop="url">多图滑动兼容浏览器默认行为</a></h2>
         
 
         <div class="post-meta">
@@ -508,8 +508,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/20/carousel/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/20/carousel/" itemprop="commentCount"></span>
+                <a href="/carousel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="carousel/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -517,7 +517,7 @@
 
           
           
-             <span id="/2017/04/20/carousel/" class="leancloud_visitors" data-flag-title="多图滑动兼容浏览器默认行为">
+             <span id="/carousel/" class="leancloud_visitors" data-flag-title="多图滑动兼容浏览器默认行为">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -550,7 +550,7 @@
 <p>一般浏览器表现良好，但是碰到qq，uc等含有左滑右滑都会前进后退行为的浏览器就会不太友好。 这明显是浏览器默认的行为，可以通过e.preventDefault(); 来禁止，经过调试，只需在touchmove的时候禁止就可以了。 刚开始禁止的是banner-inner这个div的touchmove，因为有关滑动的操作都是绑在这个元素上面。这样之后滑动touchmove的时候表现良好，但松手后，banner-inner进行transration时就还是会触发浏览器默认行为。 就在想无论是否在动画过程中，触发的不都是banner-inner这个元素的touchmove事件，而且已经禁止默认事件了，为什么还会有浏览器默认行为呢。 经过多次尝试与监听，发现动画过程中，用户触发的是banner-inner的父级，也就是banner元素的事件。 所以解决办法是添加了banner的touchmove事件监听，就是下面代码中加粗的那部分，禁止默认事件即可。<br>下面多图组件的代码</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/20/carousel/#more" rel="contents">
+            <a class="btn" href="/carousel/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -596,7 +596,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="blog.calouni.win/2017/04/10/http/">
+    <link itemprop="mainEntityOfPage" href="blog.calouni.win/http/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="fangjiale">
@@ -615,7 +615,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/04/10/http/" itemprop="url">TCP/IP  HTTP 协议   详解</a></h2>
+                <a class="post-title-link" href="/http/" itemprop="url">TCP/IP  HTTP 协议   详解</a></h2>
         
 
         <div class="post-meta">
@@ -646,8 +646,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/10/http/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/10/http/" itemprop="commentCount"></span>
+                <a href="/http/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="http/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -655,7 +655,7 @@
 
           
           
-             <span id="/2017/04/10/http/" class="leancloud_visitors" data-flag-title="TCP/IP  HTTP 协议   详解">
+             <span id="/http/" class="leancloud_visitors" data-flag-title="TCP/IP  HTTP 协议   详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -695,7 +695,7 @@
 <p>网上有很多syn攻击的工具，hping<br>mac弄起来不是特别方便，先放着，有时间再下工具来测了。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/04/10/http/#more" rel="contents">
+            <a class="btn" href="/http/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
