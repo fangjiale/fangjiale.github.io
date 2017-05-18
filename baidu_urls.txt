@@ -1,3 +1,0 @@
-blog.calouni.win/virtual_keyboard/
-blog.calouni.win/carousel/
-blog.calouni.win/http/

@@ -300,7 +300,7 @@
   
 </nav>
 
-<meta name="baidu-site-verification" content="F0hwukl47z" />
+
  </div>
     </header>
 
@@ -365,16 +365,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/virtual_keyboard/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="virtual_keyboard/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -394,6 +384,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  363
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -408,10 +429,11 @@
 
       
         
-          h5虚拟键盘的弹出和收起的一些问题,fangjiale的博客,相互学习，共同进步
+          <p>移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。</p>
+<p>1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况<br>解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="string">'#dl_app img'</span>).hide();</div><div class="line">&#125;, <span class="number">100</span>);</div><div class="line"></div><div class="line"><span class="built_in">window</span>.alert = <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</div><div class="line">  $(<span class="string">'body'</span>).append(<span class="string">'&lt;div&gt;'</span> + msg + <span class="string">'&lt;/div&gt;'</span>)</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">window</span>.res = <span class="literal">null</span>;</div><div class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fixedWatch</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">  alert(i++);</div><div class="line">  <span class="keyword">if</span>(<span class="built_in">document</span>.activeElement.nodeName == <span class="string">'INPUT'</span>)&#123;</div><div class="line">    el.css(<span class="string">'position'</span>, <span class="string">'static'</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    el.css(<span class="string">'position'</span>, <span class="string">'fixed'</span>);</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.res ) &#123; clearInterval(<span class="built_in">window</span>.res ); <span class="built_in">window</span>.res  = <span class="literal">null</span>; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$(<span class="string">'input'</span>).focus(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(!<span class="built_in">window</span>.res) &#123;</div><div class="line">    fixedWatch($(<span class="string">'#headerview header'</span>));</div><div class="line">    <span class="built_in">window</span>.res = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      fixedWatch($(<span class="string">'#headerview header'</span>));</div><div class="line">    &#125;, <span class="number">500</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/virtual_keyboard/">
+            <a class="btn" href="/virtual_keyboard/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -502,16 +524,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/carousel/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="carousel/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -531,6 +543,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,011
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
 
           
 
@@ -545,10 +588,11 @@
 
       
         
-          多图滑动兼容浏览器默认行为,fangjiale的博客,相互学习，共同进步
+          <p>页面元素结构如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"banner"</span>&gt;</div><div class="line">	<span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"banner-inner"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"banner-item"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"switch banner-switch"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"switch-item cur"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"switch-item"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>一般浏览器表现良好，但是碰到qq，uc等含有左滑右滑都会前进后退行为的浏览器就会不太友好。 这明显是浏览器默认的行为，可以通过e.preventDefault(); 来禁止，经过调试，只需在touchmove的时候禁止就可以了。 刚开始禁止的是banner-inner这个div的touchmove，因为有关滑动的操作都是绑在这个元素上面。这样之后滑动touchmove的时候表现良好，但松手后，banner-inner进行transration时就还是会触发浏览器默认行为。 就在想无论是否在动画过程中，触发的不都是banner-inner这个元素的touchmove事件，而且已经禁止默认事件了，为什么还会有浏览器默认行为呢。 经过多次尝试与监听，发现动画过程中，用户触发的是banner-inner的父级，也就是banner元素的事件。 所以解决办法是添加了banner的touchmove事件监听，就是下面代码中加粗的那部分，禁止默认事件即可。<br>下面多图组件的代码</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/carousel/">
+            <a class="btn" href="/carousel/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -639,16 +683,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/http/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="http/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -668,6 +702,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,511
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
 
           
 
@@ -682,10 +747,18 @@
 
       
         
-          多图滑动兼容浏览器默认行为,fangjiale的博客,相互学习，共同进步
+          <h2 id="tcp-ip"><a href="#tcp-ip" class="headerlink" title="tcp/ip"></a>tcp/ip</h2><p>三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。</p>
+<p>握手三部曲：</p>
+<ol>
+<li>客户端(syn=j)   ——&gt;服务端     </li>
+<li>服务端（syn=k,ack=j+1）——&gt; 客户端</li>
+<li>客户端（ack=k+1）——&gt; 服务端<br>如果这三步都成功则tcp连接成功，就可以发数据包了。</li>
+</ol>
+<p>正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送syn，因为ip和端口都是不存在的，所以服务器发送出去之后，就再也接收不到客户端的回应了。这样服务器会在那里等待以至于超时；一两个超时不会造成问题，但如果是 syn flood 的话，服务器就会有一堆半连接的tcp，就会造成堵塞。</p>
+<p>网上有很多syn攻击的工具，hping<br>mac弄起来不是特别方便，先放着，有时间再下工具来测了。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/http/">
+            <a class="btn" href="/http/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -780,7 +853,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -807,7 +880,9 @@
         
         
 
-        
+        <div id="music163player">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=26390642&auto=0&height=66"></iframe>
+</div>
 
 
       </section>
@@ -861,17 +936,17 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-user"></i> 访问人数
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
+      人次
     </span>
   
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      <i class="fa fa-eye"></i> 总访问量
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
+      次
     </span>
   
 </div>
@@ -961,39 +1036,30 @@
 
   
 
-  
-    
+
   
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"fangjiale"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+
+
+
+	
+
+
+
+
 
   
     
-      
-      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.1"></script>
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "9f51c4ee39c0491ba5dd8fcced0d020c",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
   
-
-
-
-
-
-
 
 
 
@@ -1462,5 +1528,124 @@
 
   
 
+
+  
+
+  <div class="bg_content">
+      <canvas id="canvas"></canvas>
+ </div>
+  <script>
+  'use strict';
+   var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+   function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+   function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+   var Circle = function () {
+      function Circle(x, y) {
+           _classCallCheck(this, Circle);
+           this.x = x;
+           this.y = y;
+           this.r = Math.random() * 10;
+           this._mx = Math.random();
+           this._my = Math.random();
+       }
+      _createClass(Circle, [{
+           key: 'drawCircle',
+           value: function drawCircle(ctx) {
+               ctx.beginPath();
+               //arc() 方法使用一个中心点和半径，为一个画布的当前子路径添加一条弧。
+               ctx.arc(this.x, this.y, this.r, 0, 360);
+               ctx.closePath();
+               ctx.fillStyle = 'rgba(204, 204, 204, 0.3)';
+               ctx.fill();
+           }
+       }, {
+           key: 'drawLine',
+           value: function drawLine(ctx, _circle) {
+               var dx = this.x - _circle.x;
+               var dy = this.y - _circle.y;
+               var d = Math.sqrt(dx * dx + dy * dy);
+               if (d < 150) {
+                   ctx.beginPath();
+                   ctx.moveTo(this.x, this.y); //起始点
+                   ctx.lineTo(_circle.x, _circle.y); //终点
+                   ctx.closePath();
+                   ctx.strokeStyle = 'rgba(204, 204, 204, 0.3)';
+                   ctx.stroke();
+               }
+           }
+       }, {
+           key: 'move',
+           value: function move(w, h) {
+               this._mx = this.x < w && this.x > 0 ? this._mx : -this._mx;
+               this._my = this.y < h && this.y > 0 ? this._my : -this._my;
+               this.x += this._mx / 2;
+               this.y += this._my / 2;
+           }
+       }]);
+       return Circle;
+   }();
+   var currentCirle = function (_Circle) {
+       _inherits(currentCirle, _Circle);
+       function currentCirle(x, y) {
+           _classCallCheck(this, currentCirle);
+           return _possibleConstructorReturn(this, (currentCirle.__proto__ || Object.getPrototypeOf(currentCirle)).call(this, x, y));
+       }
+       _createClass(currentCirle, [{
+           key: 'drawCircle',
+           value: function drawCircle(ctx) {
+               ctx.beginPath();
+               //this.r = (this.r < 14 && this.r > 1) ? this.r + (Math.random() * 2 - 1) : 2;
+               this.r = 8;
+               ctx.arc(this.x, this.y, this.r, 0, 360);
+               ctx.closePath();
+               //ctx.fillStyle = 'rgba(0,0,0,' + (parseInt(Math.random() * 100) / 100) + ')'
+               ctx.fillStyle = 'rgba(255, 77, 54, 0.6)';
+               ctx.fill();
+           }
+       }]);
+       return currentCirle;
+   }(Circle);
+   window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+   var canvas = document.getElementById('canvas');
+   var ctx = canvas.getContext('2d');
+   var w = canvas.width = canvas.offsetWidth;
+   var h = canvas.height = canvas.offsetHeight;
+   var circles = [];
+   var current_circle = new currentCirle(0, 0);
+   var draw = function draw() {
+       ctx.clearRect(0, 0, w, h);
+       for (var i = 0; i < circles.length; i++) {
+           circles[i].move(w, h);
+           circles[i].drawCircle(ctx);
+           for (var j = i + 1; j < circles.length; j++) {
+               circles[i].drawLine(ctx, circles[j]);
+           }
+       }
+       if (current_circle.x) {
+           current_circle.drawCircle(ctx);
+           for (var k = 1; k < circles.length; k++) {
+               current_circle.drawLine(ctx, circles[k]);
+           }
+       }
+       requestAnimationFrame(draw);
+   };
+   var init = function init(num) {
+       for (var i = 0; i < num; i++) {
+           circles.push(new Circle(Math.random() * w, Math.random() * h));
+       }
+       draw();
+   };
+   window.addEventListener('load', init(60));
+   window.onmousemove = function (e) {
+       e = e || window.event;
+       current_circle.x = e.clientX;
+       current_circle.y = e.clientY;
+   };
+   window.onmouseout = function () {
+       current_circle.x = null;
+       current_circle.y = null;
+   };
+   </script>
 </body>
 </html>

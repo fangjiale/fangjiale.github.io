@@ -93,16 +93,37 @@
 
 
 
-<meta name="description" content="多图滑动兼容浏览器默认行为,fangjiale的博客,相互学习，共同进步">
+<meta name="description" content="tcp/ip三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。
+握手三部曲：
+
+客户端(syn=j)   ——&amp;gt;服务端     
+服务端（syn=k,ack=j+1）——&amp;gt; 客户端
+客户端（ack=k+1）——&amp;gt; 服务端如果这三步都成功则tcp连接成功，就可以发数据包了。
+
+正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP/IP  HTTP 协议   详解">
 <meta property="og:url" content="blog.calouni.win/http/index.html">
 <meta property="og:site_name" content="blog.calouni.win">
-<meta property="og:description" content="多图滑动兼容浏览器默认行为,fangjiale的博客,相互学习，共同进步">
-<meta property="og:updated_time" content="2017-05-18T02:21:40.000Z">
+<meta property="og:description" content="tcp/ip三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。
+握手三部曲：
+
+客户端(syn=j)   ——&amp;gt;服务端     
+服务端（syn=k,ack=j+1）——&amp;gt; 客户端
+客户端（ack=k+1）——&amp;gt; 服务端如果这三步都成功则tcp连接成功，就可以发数据包了。
+
+正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送">
+<meta property="og:updated_time" content="2017-05-18T06:49:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP/IP  HTTP 协议   详解">
-<meta name="twitter:description" content="多图滑动兼容浏览器默认行为,fangjiale的博客,相互学习，共同进步">
+<meta name="twitter:description" content="tcp/ip三次握手协议已经听的很烂了，但总觉得模模糊糊，是是而非。
+握手三部曲：
+
+客户端(syn=j)   ——&amp;gt;服务端     
+服务端（syn=k,ack=j+1）——&amp;gt; 客户端
+客户端（ack=k+1）——&amp;gt; 服务端如果这三步都成功则tcp连接成功，就可以发数据包了。
+
+正因为tcp协议必须经过这样的三部曲，就会有漏洞，比如客户端伪造发送方的ip和端口，给目标服务器发送">
 
 
 
@@ -299,7 +320,7 @@
   
 </nav>
 
-<meta name="baidu-site-verification" content="F0hwukl47z" />
+
  </div>
     </header>
 
@@ -367,8 +388,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/http/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="http/" itemprop="commentCount"></span>
+                <a class="cloud-tie-join-count" href="/http/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -391,11 +412,38 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,511
+                </span>
+              
 
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
           
-              <div class="post-description">
-                  多图滑动兼容浏览器默认行为,fangjiale的博客,相互学习，共同进步
-              </div>
+
           
 
         </div>
@@ -536,25 +584,6 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="http/"
-     data-title="TCP/IP  HTTP 协议   详解"
-     data-content=""
-     data-url="blog.calouni.win/http/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
@@ -566,9 +595,7 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="http/"
-           data-title="TCP/IP  HTTP 协议   详解" data-url="blog.calouni.win/http/">
-      </div>
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
     
   </div>
 
@@ -629,7 +656,7 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -656,7 +683,9 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
         
         
 
-        
+        <div id="music163player">
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=26390642&auto=0&height=66"></iframe>
+</div>
 
 
       </section>
@@ -726,17 +755,17 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
 
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-user"></i> 访问人数
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
+      人次
     </span>
   
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      <i class="fa fa-eye"></i> 总访问量
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
+      次
     </span>
   
 </div>
@@ -830,39 +859,30 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
 
   
 
-  
-    
+
   
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"fangjiale"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+
+
+
+	
+
+
+
+
 
   
     
-      
-      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js?v=5.1.1"></script>
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "9f51c4ee39c0491ba5dd8fcced0d020c",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
   
-
-
-
-
-
-
 
 
 
@@ -1331,5 +1351,124 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
 
   
 
+
+  
+
+  <div class="bg_content">
+      <canvas id="canvas"></canvas>
+ </div>
+  <script>
+  'use strict';
+   var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+   function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+   function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+   var Circle = function () {
+      function Circle(x, y) {
+           _classCallCheck(this, Circle);
+           this.x = x;
+           this.y = y;
+           this.r = Math.random() * 10;
+           this._mx = Math.random();
+           this._my = Math.random();
+       }
+      _createClass(Circle, [{
+           key: 'drawCircle',
+           value: function drawCircle(ctx) {
+               ctx.beginPath();
+               //arc() 方法使用一个中心点和半径，为一个画布的当前子路径添加一条弧。
+               ctx.arc(this.x, this.y, this.r, 0, 360);
+               ctx.closePath();
+               ctx.fillStyle = 'rgba(204, 204, 204, 0.3)';
+               ctx.fill();
+           }
+       }, {
+           key: 'drawLine',
+           value: function drawLine(ctx, _circle) {
+               var dx = this.x - _circle.x;
+               var dy = this.y - _circle.y;
+               var d = Math.sqrt(dx * dx + dy * dy);
+               if (d < 150) {
+                   ctx.beginPath();
+                   ctx.moveTo(this.x, this.y); //起始点
+                   ctx.lineTo(_circle.x, _circle.y); //终点
+                   ctx.closePath();
+                   ctx.strokeStyle = 'rgba(204, 204, 204, 0.3)';
+                   ctx.stroke();
+               }
+           }
+       }, {
+           key: 'move',
+           value: function move(w, h) {
+               this._mx = this.x < w && this.x > 0 ? this._mx : -this._mx;
+               this._my = this.y < h && this.y > 0 ? this._my : -this._my;
+               this.x += this._mx / 2;
+               this.y += this._my / 2;
+           }
+       }]);
+       return Circle;
+   }();
+   var currentCirle = function (_Circle) {
+       _inherits(currentCirle, _Circle);
+       function currentCirle(x, y) {
+           _classCallCheck(this, currentCirle);
+           return _possibleConstructorReturn(this, (currentCirle.__proto__ || Object.getPrototypeOf(currentCirle)).call(this, x, y));
+       }
+       _createClass(currentCirle, [{
+           key: 'drawCircle',
+           value: function drawCircle(ctx) {
+               ctx.beginPath();
+               //this.r = (this.r < 14 && this.r > 1) ? this.r + (Math.random() * 2 - 1) : 2;
+               this.r = 8;
+               ctx.arc(this.x, this.y, this.r, 0, 360);
+               ctx.closePath();
+               //ctx.fillStyle = 'rgba(0,0,0,' + (parseInt(Math.random() * 100) / 100) + ')'
+               ctx.fillStyle = 'rgba(255, 77, 54, 0.6)';
+               ctx.fill();
+           }
+       }]);
+       return currentCirle;
+   }(Circle);
+   window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+   var canvas = document.getElementById('canvas');
+   var ctx = canvas.getContext('2d');
+   var w = canvas.width = canvas.offsetWidth;
+   var h = canvas.height = canvas.offsetHeight;
+   var circles = [];
+   var current_circle = new currentCirle(0, 0);
+   var draw = function draw() {
+       ctx.clearRect(0, 0, w, h);
+       for (var i = 0; i < circles.length; i++) {
+           circles[i].move(w, h);
+           circles[i].drawCircle(ctx);
+           for (var j = i + 1; j < circles.length; j++) {
+               circles[i].drawLine(ctx, circles[j]);
+           }
+       }
+       if (current_circle.x) {
+           current_circle.drawCircle(ctx);
+           for (var k = 1; k < circles.length; k++) {
+               current_circle.drawLine(ctx, circles[k]);
+           }
+       }
+       requestAnimationFrame(draw);
+   };
+   var init = function init(num) {
+       for (var i = 0; i < num; i++) {
+           circles.push(new Circle(Math.random() * w, Math.random() * h));
+       }
+       draw();
+   };
+   window.addEventListener('load', init(60));
+   window.onmousemove = function (e) {
+       e = e || window.event;
+       current_circle.x = e.clientX;
+       current_circle.y = e.clientY;
+   };
+   window.onmouseout = function () {
+       current_circle.x = null;
+       current_circle.y = null;
+   };
+   </script>
 </body>
 </html>
