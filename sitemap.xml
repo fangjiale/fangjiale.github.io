@@ -2,23 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>blog.calouni.win/google3a80661e8b434cd4.html</loc>
+    <loc>blog.calouni.win/virtual_keyboard/</loc>
     
-    <lastmod>2017-05-17T10:38:56.000Z</lastmod>
+    <lastmod>2017-05-18T02:23:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/http/</loc>
+    
+    <lastmod>2017-05-18T02:21:40.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>blog.calouni.win/carousel/</loc>
     
-    <lastmod>2017-05-17T09:53:10.000Z</lastmod>
+    <lastmod>2017-05-18T02:20:50.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>blog.calouni.win/virtual_keyboard/</loc>
+    <loc>blog.calouni.win/google3a80661e8b434cd4.html</loc>
     
-    <lastmod>2017-05-17T06:53:21.000Z</lastmod>
+    <lastmod>2017-05-17T10:38:56.000Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>blog.calouni.win/photos/index.html</loc>
     
     <lastmod>2017-05-17T06:29:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/http/</loc>
-    
-    <lastmod>2017-05-17T04:37:37.000Z</lastmod>
     
   </url>
   

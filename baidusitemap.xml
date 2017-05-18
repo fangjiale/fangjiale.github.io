@@ -3,10 +3,45 @@
 
 
     
+  <url>
+    <loc>blog.calouni.win/virtual_keyboard/</loc>
+    <lastmod>2017-05-18T02:23:48.000Z</lastmod>
+    <data>
+        <display>
+        <title>H5虚拟键盘的弹出和收起</title>
+        <pubTime>2017-04-21T22:49:50.000Z</pubTime>
+        
+        <tag>虚拟键盘</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>blog.calouni.win/http/</loc>
+    <lastmod>2017-05-18T02:21:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>TCP/IP  HTTP 协议   详解</title>
+        <pubTime>2017-04-09T22:49:50.000Z</pubTime>
+        
+        <tag>TCP/IP</tag>
+         
+        <tag>HTTP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>blog.calouni.win/carousel/</loc>
-    <lastmod>2017-05-17T09:53:10.000Z</lastmod>
+    <lastmod>2017-05-18T02:20:50.000Z</lastmod>
     <data>
         <display>
         <title>多图滑动兼容浏览器默认行为</title>
@@ -23,43 +58,8 @@
     </url>
 
     
-  <url>
-    <loc>blog.calouni.win/virtual_keyboard/</loc>
-    <lastmod>2017-05-17T06:53:21.000Z</lastmod>
-    <data>
-        <display>
-        <title>虚拟键盘的一些问题</title>
-        <pubTime>2017-04-21T22:49:50.000Z</pubTime>
-        
-        <tag>虚拟键盘</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
     
-    
-  <url>
-    <loc>blog.calouni.win/http/</loc>
-    <lastmod>2017-05-17T04:37:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>TCP/IP  HTTP 协议   详解</title>
-        <pubTime>2017-04-09T22:49:50.000Z</pubTime>
-        
-        <tag>TCP/IP</tag>
-         
-        <tag>HTTP</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
     
 </urlset>
