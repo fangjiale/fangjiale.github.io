@@ -3,20 +3,6 @@
   
     
     <entry>
-      <title><![CDATA[hexo seo 优化，让搜索引擎搜到你的博客]]></title>
-      <url>/hexo_seo/</url>
-      <content type="html"></content>
-      
-        
-        <tags>
-            
-            <tag> seo </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[H5虚拟键盘的弹出和收起]]></title>
       <url>/virtual_keyboard/</url>
       <content type="html"><![CDATA[<p>移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。</p>
