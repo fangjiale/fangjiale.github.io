@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="blog.calouni.win/"/>
-  <updated>2017-05-18T06:49:07.000Z</updated>
+  <updated>2017-05-18T10:33:45.000Z</updated>
   <id>blog.calouni.win/</id>
   
   <author>
@@ -14,6 +14,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo seo 优化，让搜索引擎搜到你的博客</title>
+    <link href="blog.calouni.win/hexo_seo/"/>
+    <id>blog.calouni.win/hexo_seo/</id>
+    <published>2017-04-22T22:49:50.000Z</published>
+    <updated>2017-05-18T10:33:45.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="seo" scheme="blog.calouni.win/tags/seo/"/>
+    
+  </entry>
   
   <entry>
     <title>H5虚拟键盘的弹出和收起</title>

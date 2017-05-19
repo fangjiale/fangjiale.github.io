@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>blog.calouni.win/hexo_seo/</loc>
+    
+    <lastmod>2017-05-18T10:33:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/about/index.html</loc>
+    
+    <lastmod>2017-05-18T09:06:31.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>blog.calouni.win/virtual_keyboard/</loc>
     
     <lastmod>2017-05-18T06:49:07.000Z</lastmod>
@@ -26,13 +40,6 @@
     <loc>blog.calouni.win/google3a80661e8b434cd4.html</loc>
     
     <lastmod>2017-05-17T10:38:56.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/about/index.html</loc>
-    
-    <lastmod>2017-05-17T06:48:27.000Z</lastmod>
     
   </url>
   
