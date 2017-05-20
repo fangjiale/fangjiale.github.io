@@ -105,15 +105,15 @@
 捕获和冒泡{事件的原理（捕获-&amp;gt;目标-&amp;gt;冒泡）}先是捕获，从window自上往下找目标，然后运行目标事件，如果没有Event.stopPropagation(),就会往上冒泡。
 事件的过程提到捕获和冒泡，可能用是会用，但概念不是很清楚。
 捕获和冒泡：捕获是从上往下的，冒泡是从下">
-<meta property="og:image" content="blog.calouni.win/uploads/images/event.jpg">
-<meta property="og:updated_time" content="2017-05-20T02:42:44.000Z">
+<meta property="og:image" content="blog.calouni.win/uploads/img/event.jpg">
+<meta property="og:updated_time" content="2017-05-20T02:47:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件">
 <meta name="twitter:description" content="前言事件是通过用户操作，运行js事件，达到预想的效果。明白事件的原理以及使用非常关键。所以花点时间整理出来。
 捕获和冒泡{事件的原理（捕获-&amp;gt;目标-&amp;gt;冒泡）}先是捕获，从window自上往下找目标，然后运行目标事件，如果没有Event.stopPropagation(),就会往上冒泡。
 事件的过程提到捕获和冒泡，可能用是会用，但概念不是很清楚。
 捕获和冒泡：捕获是从上往下的，冒泡是从下">
-<meta name="twitter:image" content="blog.calouni.win/uploads/images/event.jpg">
+<meta name="twitter:image" content="blog.calouni.win/uploads/img/event.jpg">
 
 
 
@@ -474,7 +474,7 @@
 <p><strong>捕获和冒泡：捕获是从上往下的，冒泡是从下往上的冒泡，如果addEventListener() 方法第三个参数设为true，即捕获，会往下派发到子树中的监听器，只要是捕获，冒泡事件经过时就略过了</strong></p>
 <a id="more"></a>
 <p>看这张图会比较好理解：</p>
-<p><img src="/uploads/images/event.jpg" alt="Alt text"></p>
+<p><img src="/uploads/img/event.jpg" alt="Alt text"></p>
 <p><strong>各自的应用场景：</strong></p>
 <ol>
 <li>捕获：当要实现在某个条件下，点任何按钮没反应时，可在document上绑定捕获事件，然后event.preventDefault()即可，事件就不会往下找目标，且不会冒泡了。 IE不支持</li>
