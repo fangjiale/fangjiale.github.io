@@ -1,0 +1,13 @@
+blog.calouni.win/virtual_keyboard/
+blog.calouni.win/carousel/
+blog.calouni.win/http/
+blog.calouni.win/tree/
+blog.calouni.win/storage/
+blog.calouni.win/setTimeout/
+blog.calouni.win/event/
+blog.calouni.win/center/
+blog.calouni.win/label-a/
+blog.calouni.win/marginTop/
+blog.calouni.win/first/
+blog.calouni.win/this/
+blog.calouni.win/hello/
