@@ -104,7 +104,7 @@
 123function a()&amp;#123;&amp;#125;;var a=function()&amp;#123;&amp;#125;;  var a=new Function(&apos;aa&apos;,console.log(&apos;aa&apos;));
 函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；">
 <meta property="og:image" content="blog.calouni.win/uploads/img/first.jpg">
-<meta property="og:updated_time" content="2017-05-20T02:47:47.000Z">
+<meta property="og:updated_time" content="2017-05-20T02:53:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="继承">
 <meta name="twitter:description" content="普通对象，函数对象函数对象有三种形式
@@ -475,9 +475,8 @@
 <li>注意Object.constructor===Function；//true 本身Object就是Function函数构造出来的</li>
 <li>如何查找一个对象的constructor，就是在该对象的原型链上寻找碰到的第一个constructor属性所指向的对象</li>
 </ol>
-<h2 id="原型对象prototype中都有个预定义的constructor属性，用来引用它的函数对象。这是一种循环引用"><a href="#原型对象prototype中都有个预定义的constructor属性，用来引用它的函数对象。这是一种循环引用" class="headerlink" title="原型对象prototype中都有个预定义的constructor属性，用来引用它的函数对象。这是一种循环引用"></a>原型对象prototype中都有个预定义的constructor属性，用来引用它的函数对象。这是一种循环引用</h2><pre><code>Function.prototype.constructor === Function //true
-Object.prototype.constructor === Object //true
-</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<h2 id="原型对象prototype中都有个预定义的constructor属性，用来引用它的函数对象。这是一种循环引用"><a href="#原型对象prototype中都有个预定义的constructor属性，用来引用它的函数对象。这是一种循环引用" class="headerlink" title="原型对象prototype中都有个预定义的constructor属性，用来引用它的函数对象。这是一种循环引用"></a>原型对象prototype中都有个预定义的constructor属性，用来引用它的函数对象。这是一种循环引用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.constructor === <span class="built_in">Function</span> <span class="comment">//true</span></div><div class="line"><span class="built_in">Object</span>.prototype.constructor === <span class="built_in">Object</span> <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li>原型和原型链是JS实现继承的一种模型。</li>
 <li>原型链的形成是真正是靠<strong>proto</strong> 而非prototype</li>
 </ol>

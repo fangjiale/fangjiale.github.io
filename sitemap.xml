@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>blog.calouni.win/setTimeout/</loc>
+    
+    <lastmod>2017-05-20T03:00:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/carousel/</loc>
+    
+    <lastmod>2017-05-20T03:00:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/virtual_keyboard/</loc>
+    
+    <lastmod>2017-05-20T02:59:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/this/</loc>
+    
+    <lastmod>2017-05-20T02:58:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/tree/</loc>
+    
+    <lastmod>2017-05-20T02:56:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/first/</loc>
+    
+    <lastmod>2017-05-20T02:53:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>blog.calouni.win/event/</loc>
     
     <lastmod>2017-05-20T02:47:55.000Z</lastmod>
@@ -9,21 +51,7 @@
   </url>
   
   <url>
-    <loc>blog.calouni.win/first/</loc>
-    
-    <lastmod>2017-05-20T02:47:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>blog.calouni.win/hello/</loc>
-    
-    <lastmod>2017-05-20T02:39:21.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/virtual_keyboard/</loc>
     
     <lastmod>2017-05-20T02:39:21.000Z</lastmod>
     
@@ -37,30 +65,9 @@
   </url>
   
   <url>
-    <loc>blog.calouni.win/this/</loc>
-    
-    <lastmod>2017-05-20T02:39:21.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/tree/</loc>
-    
-    <lastmod>2017-05-20T02:39:21.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>blog.calouni.win/storage/</loc>
     
     <lastmod>2017-05-20T02:38:55.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/setTimeout/</loc>
-    
-    <lastmod>2017-05-20T02:38:48.000Z</lastmod>
     
   </url>
   
@@ -75,13 +82,6 @@
     <loc>blog.calouni.win/center/</loc>
     
     <lastmod>2017-05-20T02:36:06.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/carousel/</loc>
-    
-    <lastmod>2017-05-20T02:36:00.000Z</lastmod>
     
   </url>
   
