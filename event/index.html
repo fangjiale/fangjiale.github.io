@@ -105,15 +105,15 @@
 捕获和冒泡{事件的原理（捕获-&amp;gt;目标-&amp;gt;冒泡）}先是捕获，从window自上往下找目标，然后运行目标事件，如果没有Event.stopPropagation(),就会往上冒泡。
 事件的过程提到捕获和冒泡，可能用是会用，但概念不是很清楚。
 捕获和冒泡：捕获是从上往下的，冒泡是从下">
-<meta property="og:image" content="blog.calouni.win/img/event.jpg">
-<meta property="og:updated_time" content="2017-05-20T02:03:12.000Z">
+<meta property="og:image" content="blog.calouni.win/uploads/images/event.jpg">
+<meta property="og:updated_time" content="2017-05-20T02:42:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件">
 <meta name="twitter:description" content="前言事件是通过用户操作，运行js事件，达到预想的效果。明白事件的原理以及使用非常关键。所以花点时间整理出来。
 捕获和冒泡{事件的原理（捕获-&amp;gt;目标-&amp;gt;冒泡）}先是捕获，从window自上往下找目标，然后运行目标事件，如果没有Event.stopPropagation(),就会往上冒泡。
 事件的过程提到捕获和冒泡，可能用是会用，但概念不是很清楚。
 捕获和冒泡：捕获是从上往下的，冒泡是从下">
-<meta name="twitter:image" content="blog.calouni.win/img/event.jpg">
+<meta name="twitter:image" content="blog.calouni.win/uploads/images/event.jpg">
 
 
 
@@ -434,7 +434,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  826
+                  830
                 </span>
               
 
@@ -472,48 +472,27 @@
 <h2 id="捕获和冒泡-事件的原理（捕获-gt-目标-gt-冒泡）"><a href="#捕获和冒泡-事件的原理（捕获-gt-目标-gt-冒泡）" class="headerlink" title="捕获和冒泡{事件的原理（捕获-&gt;目标-&gt;冒泡）}"></a>捕获和冒泡{事件的原理（捕获-&gt;目标-&gt;冒泡）}</h2><p>先是捕获，从window自上往下找目标，然后运行目标事件，如果没有Event.stopPropagation(),就会往上冒泡。</p>
 <p>事件的过程提到捕获和冒泡，可能用是会用，但概念不是很清楚。</p>
 <p><strong>捕获和冒泡：捕获是从上往下的，冒泡是从下往上的冒泡，如果addEventListener() 方法第三个参数设为true，即捕获，会往下派发到子树中的监听器，只要是捕获，冒泡事件经过时就略过了</strong></p>
+<a id="more"></a>
 <p>看这张图会比较好理解：</p>
-<p><img src="/img/event.jpg" alt="Alt text"></p>
+<p><img src="/uploads/images/event.jpg" alt="Alt text"></p>
 <p><strong>各自的应用场景：</strong></p>
 <ol>
 <li>捕获：当要实现在某个条件下，点任何按钮没反应时，可在document上绑定捕获事件，然后event.preventDefault()即可，事件就不会往下找目标，且不会冒泡了。 IE不支持</li>
 <li>冒泡：可用于事件代理等，通过event.target可得到目标按钮。</li>
 </ol>
-<h2 id="原生绑定事件的几种方式"><a href="#原生绑定事件的几种方式" class="headerlink" title="原生绑定事件的几种方式"></a>原生绑定事件的几种方式</h2><pre><code>function cb() { console.log(1); } 
-element.addEventListener(&apos;click&apos;, cb, false); 
-element.attachEvent(&apos;onclick&apos;, cb); //历史版本都支持，从IE11开始不支持
-element.onclick = cb;  //所有浏览器
-</code></pre><p>addEventListener</p>
+<h2 id="原生绑定事件的几种方式"><a href="#原生绑定事件的几种方式" class="headerlink" title="原生绑定事件的几种方式"></a>原生绑定事件的几种方式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">cb</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="number">1</span>); &#125; </div><div class="line">element.addEventListener(<span class="string">'click'</span>, cb, <span class="literal">false</span>); </div><div class="line">element.attachEvent(<span class="string">'onclick'</span>, cb); <span class="comment">//历史版本都支持，从IE11开始不支持</span></div><div class="line">element.onclick = cb;  <span class="comment">//所有浏览器</span></div></pre></td></tr></table></figure>
+<p>addEventListener</p>
 <p> <strong>注意：</strong>Internet Explorer 8 及更早IE版本不支持 addEventListener() 方法，，Opera 7.0 及 Opera 更早版本也不支持。 但是，对于这些不支持该函数的浏览器，你可以使用 attachEvent() 方法来添加事件句柄</p>
 <p>参数说明：</p>
 <p>type：事件类型</p>
 <p>listener：事件触发后的回调函数</p>
-<p>useCapture：是否使用捕获，如果值为true， useCapture 表示用户希望发起捕获。 在发起捕获之后， 只要Dom子树下发生了该事件类型，都会先被该事件监听器捕获，然后再被派发到Dom子树中的事件监听器中。并且向上冒泡的事件不会触发那些发起捕获的事件监听器。进一步的解释可以查看 DOM Level 3 Events 文档。 useCapture 默认值为false 。</p>
-<pre><code>var  newNode=  document.createElement(&quot;p&quot;);//创建新节点
-newNode.onclick = function(){
-    console.log(1);
-}
-</code></pre><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><h3 id="addEventListener-attachEvent"><a href="#addEventListener-attachEvent" class="headerlink" title="addEventListener attachEvent"></a>addEventListener attachEvent</h3><p>addEventListener  和  attachEvent 之间的区别主要是浏览器兼容的区别</p>
+<p>useCapture：是否使用捕获，如果值为true， useCapture 表示用户希望发起捕获。 在发起捕获之后， 只要Dom子树下发生了该事件类型，都会先被该事件监听器捕获，然后再被派发到Dom子树中的事件监听器中。并且向上冒泡的事件不会触发那些发起捕获的事件监听器。进一步的解释可以查看 DOM Level 3 Events 文档。 useCapture 默认值为false 。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">var</span>  newNode=  <span class="built_in">document</span>.createElement(<span class="string">"p"</span>);<span class="comment">//创建新节点</span></div><div class="line">newNode.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><h3 id="addEventListener-attachEvent"><a href="#addEventListener-attachEvent" class="headerlink" title="addEventListener attachEvent"></a>addEventListener attachEvent</h3><p>addEventListener  和  attachEvent 之间的区别主要是浏览器兼容的区别</p>
 <p>onclick和 另两者的区别主要是 onclick事件是覆盖的，后面覆盖前面，而addEventListener  和  attachEvent可以同个事件绑定在相同元素上，且都依次运行。</p>
-<h3 id="bind-on-delegate-live"><a href="#bind-on-delegate-live" class="headerlink" title="bind on delegate live"></a>bind on delegate live</h3><h4 id="live-低版本的jquery用的live，后来改成on了"><a href="#live-低版本的jquery用的live，后来改成on了" class="headerlink" title="live 低版本的jquery用的live，后来改成on了"></a>live 低版本的jquery用的live，后来改成on了</h4><h4 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h4><pre><code>$(&quot;div p&quot;).bind(&quot;click&quot;, function () {
-    console.log($(this).text());
-})
-
-//这类的绑定就是bind绑定
-$(&quot;div p&quot;).click(function(){
-    console.log($(this).text());
-})
-
-1. bind是隐式迭代的绑定方法，当给多个元素进行绑定的时候就不适合，它是一个个元素进行绑定的
-2. 对于当前不存在的元素，是无法绑定的
-</code></pre><h4 id="on"><a href="#on" class="headerlink" title="on"></a>on</h4><pre><code>是对bind delegate live 三种绑定方式的合并
-
-div.on(&apos;click&apos;, &apos;p&apos;, function(){});
-这是事件委托的绑定方式，如果把选择器的p去掉，对div进行绑定，其实就是bind绑定方法
-</code></pre><h4 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h4><pre><code>$(&quot;div&quot;).delegate(&quot;p&quot;,&quot;click&quot;,function(){
-    alert(&quot;p&quot;);
-})
-</code></pre><h4 id="on和delegate的区别"><a href="#on和delegate的区别" class="headerlink" title="on和delegate的区别"></a>on和delegate的区别</h4><p>on事件委托的绑定方式和delegate除了参数位置不太一样，其它没什么区别</p>
+<h3 id="bind-on-delegate-live"><a href="#bind-on-delegate-live" class="headerlink" title="bind on delegate live"></a>bind on delegate live</h3><h4 id="live-低版本的jquery用的live，后来改成on了"><a href="#live-低版本的jquery用的live，后来改成on了" class="headerlink" title="live 低版本的jquery用的live，后来改成on了"></a>live 低版本的jquery用的live，后来改成on了</h4><h4 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div p"</span>).bind(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).text());</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//这类的绑定就是bind绑定</span></div><div class="line">$(<span class="string">"div p"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).text());</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="number">1.</span> bind是隐式迭代的绑定方法，当给多个元素进行绑定的时候就不适合，它是一个个元素进行绑定的</div><div class="line"><span class="number">2.</span> 对于当前不存在的元素，是无法绑定的</div></pre></td></tr></table></figure>
+<h4 id="on"><a href="#on" class="headerlink" title="on"></a>on</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">是对bind delegate live 三种绑定方式的合并</div><div class="line"></div><div class="line">div.on(<span class="string">'click'</span>, <span class="string">'p'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;);</div><div class="line">这是事件委托的绑定方式，如果把选择器的p去掉，对div进行绑定，其实就是bind绑定方法</div></pre></td></tr></table></figure>
+<h4 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"div"</span>).delegate(<span class="string">"p"</span>,<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">"p"</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="on和delegate的区别"><a href="#on和delegate的区别" class="headerlink" title="on和delegate的区别"></a>on和delegate的区别</h4><p>on事件委托的绑定方式和delegate除了参数位置不太一样，其它没什么区别</p>
 
       
     </div>
@@ -680,7 +659,7 @@ div.on(&apos;click&apos;, &apos;p&apos;, function(){});
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

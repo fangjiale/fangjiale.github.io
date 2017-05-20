@@ -93,28 +93,16 @@
 
 
 
-<meta name="description" content="有以下两种情况外边距合并margin-top失效&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-    &amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot; /&amp;gt;
-    &amp;lt;title&amp;gt;&amp;lt;/title&amp;">
+<meta name="description" content="有以下两种情况外边距合并margin-top失效1234567891011121314151617181920212223242526&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;	&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&amp;gt;	&amp;lt;title&amp;g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="marginTop不生效的解决">
 <meta property="og:url" content="blog.calouni.win/marginTop/index.html">
 <meta property="og:site_name" content="blog.calouni.win">
-<meta property="og:description" content="有以下两种情况外边距合并margin-top失效&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-    &amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot; /&amp;gt;
-    &amp;lt;title&amp;gt;&amp;lt;/title&amp;">
-<meta property="og:updated_time" content="2017-05-20T02:03:12.000Z">
+<meta property="og:description" content="有以下两种情况外边距合并margin-top失效1234567891011121314151617181920212223242526&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;	&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&amp;gt;	&amp;lt;title&amp;g">
+<meta property="og:updated_time" content="2017-05-20T02:39:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="marginTop不生效的解决">
-<meta name="twitter:description" content="有以下两种情况外边距合并margin-top失效&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-    &amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot; /&amp;gt;
-    &amp;lt;title&amp;gt;&amp;lt;/title&amp;">
+<meta name="twitter:description" content="有以下两种情况外边距合并margin-top失效1234567891011121314151617181920212223242526&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;	&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&amp;gt;	&amp;lt;title&amp;g">
 
 
 
@@ -435,7 +423,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  248
+                  250
                 </span>
               
 
@@ -469,55 +457,11 @@
       
 
       
-        <h2 id="有以下两种情况"><a href="#有以下两种情况" class="headerlink" title="有以下两种情况"></a>有以下两种情况</h2><h3 id="外边距合并margin-top失效"><a href="#外边距合并margin-top失效" class="headerlink" title="外边距合并margin-top失效"></a>外边距合并margin-top失效</h3><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
-    &lt;title&gt;&lt;/title&gt;
-    &lt;style&gt;
-        .one{
-            height:100px;
-            width:100px;
-            border:1px solid blue;
-            margin-bottom:100px;
-        }
-        .two{
-            width:50px;
-            height:50px;
-            border:1px solid green;
-            margin-top:20px;
-        }
-
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class=&quot;one&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;two&quot;&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>这样的结果是两个div上下的距离是100px，而不是(100+20)px，因为one的margin-bottom的值比two的margin-top大，所以此处的margin-top是无效的。</p>
-<h3 id="子元素设margin-top无效果"><a href="#子元素设margin-top无效果" class="headerlink" title="子元素设margin-top无效果"></a>子元素设margin-top无效果</h3><pre><code>&lt;!DOCTYPE html&gt; 
-&lt;html&gt; 
-&lt;head&gt; 
-  &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
-  &lt;style type=&quot;text/css&quot;&gt; 
-    .father{
-      width:300px; height:300px; 
-      background-color:yellow;margin-top:20px; 
-    }
-    .children{
-      width:100px; height:100px; background-color:green;
-      border:1px solid green;margin-top:10px; 
-    }
-  &lt;/style&gt; 
-&lt;/head&gt; 
-&lt;body&gt; 
-  &lt;div class=&quot;father&quot;&gt; 
-    &lt;div class=&quot;children&quot;&gt;&lt;/div&gt; 
-  &lt;/div&gt;
-&lt;/body&gt; 
-&lt;/html&gt;
-</code></pre><p>这种情况明明子节点设置了margin-top，但却没生效。办法是有，只要父元素上（1、overflow：hidden 2、加padding 3、加border），好像只要给父元素明确下边界就可以生效了，这三种方法都可以做到。</p>
+        <h2 id="有以下两种情况"><a href="#有以下两种情况" class="headerlink" title="有以下两种情况"></a>有以下两种情况</h2><h3 id="外边距合并margin-top失效"><a href="#外边距合并margin-top失效" class="headerlink" title="外边距合并margin-top失效"></a>外边距合并margin-top失效</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">	    <span class="selector-class">.one</span>&#123;</div><div class="line">			<span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">			<span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">			<span class="attribute">border</span>:<span class="number">1px</span> solid blue;</div><div class="line">			<span class="attribute">margin-bottom</span>:<span class="number">100px</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="selector-class">.two</span>&#123;</div><div class="line">			<span class="attribute">width</span>:<span class="number">50px</span>;</div><div class="line">			<span class="attribute">height</span>:<span class="number">50px</span>;</div><div class="line">			<span class="attribute">border</span>:<span class="number">1px</span> solid green;</div><div class="line">			<span class="attribute">margin-top</span>:<span class="number">20px</span>;</div><div class="line">		&#125;</div><div class="line">	</div><div class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"one"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"two"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这样的结果是两个div上下的距离是100px，而不是(100+20)px，因为one的margin-bottom的值比two的margin-top大，所以此处的margin-top是无效的。</p>
+<a id="more"></a>
+<h3 id="子元素设margin-top无效果"><a href="#子元素设margin-top无效果" class="headerlink" title="子元素设margin-top无效果"></a>子元素设margin-top无效果</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt; </div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span> </span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span> </div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"> </span></div><div class="line">    <span class="selector-class">.father</span>&#123;</div><div class="line">      <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; </div><div class="line">	  <span class="attribute">background-color</span>:yellow;<span class="attribute">margin-top</span>:<span class="number">20px</span>; </div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.children</span>&#123;</div><div class="line">      <span class="attribute">width</span>:<span class="number">100px</span>; <span class="attribute">height</span>:<span class="number">100px</span>; <span class="attribute">background-color</span>:green;</div><div class="line">	  <span class="attribute">border</span>:<span class="number">1px</span> solid green;<span class="attribute">margin-top</span>:<span class="number">10px</span>; </div><div class="line">    &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span> </div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> </div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"father"</span>&gt;</span> </div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"children"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span> </div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这种情况明明子节点设置了margin-top，但却没生效。办法是有，只要父元素上（1、overflow：hidden 2、加padding 3、加border），好像只要给父元素明确下边界就可以生效了，这三种方法都可以做到。</p>
 
       
     </div>
@@ -684,7 +628,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

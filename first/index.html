@@ -93,30 +93,21 @@
 
 
 
-<meta name="description" content="普通对象，函数对象函数对象有三种形式
-function a(){};
-var a=function(){};  
-var a=new Function(&amp;apos;aa&amp;apos;,console.log(&amp;apos;aa&amp;apos;));
-函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；原型对象的作用是用来继承的以及原型链的概念">
+<meta name="description" content="普通对象，函数对象函数对象有三种形式123function a()&amp;#123;&amp;#125;;var a=function()&amp;#123;&amp;#125;;  var a=new Function(&apos;aa&apos;,console.log(&apos;aa&apos;));
+函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="继承">
 <meta property="og:url" content="blog.calouni.win/first/index.html">
 <meta property="og:site_name" content="blog.calouni.win">
-<meta property="og:description" content="普通对象，函数对象函数对象有三种形式
-function a(){};
-var a=function(){};  
-var a=new Function(&amp;apos;aa&amp;apos;,console.log(&amp;apos;aa&amp;apos;));
-函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；原型对象的作用是用来继承的以及原型链的概念">
-<meta property="og:image" content="blog.calouni.win/img/first.jpg">
-<meta property="og:updated_time" content="2017-05-20T02:03:12.000Z">
+<meta property="og:description" content="普通对象，函数对象函数对象有三种形式123function a()&amp;#123;&amp;#125;;var a=function()&amp;#123;&amp;#125;;  var a=new Function(&apos;aa&apos;,console.log(&apos;aa&apos;));
+函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；">
+<meta property="og:image" content="blog.calouni.win/uploads/images/first.jpg">
+<meta property="og:updated_time" content="2017-05-20T02:43:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="继承">
-<meta name="twitter:description" content="普通对象，函数对象函数对象有三种形式
-function a(){};
-var a=function(){};  
-var a=new Function(&amp;apos;aa&amp;apos;,console.log(&amp;apos;aa&amp;apos;));
-函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；原型对象的作用是用来继承的以及原型链的概念">
-<meta name="twitter:image" content="blog.calouni.win/img/first.jpg">
+<meta name="twitter:description" content="普通对象，函数对象函数对象有三种形式123function a()&amp;#123;&amp;#125;;var a=function()&amp;#123;&amp;#125;;  var a=new Function(&apos;aa&apos;,console.log(&apos;aa&apos;));
+函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；">
+<meta name="twitter:image" content="blog.calouni.win/uploads/images/first.jpg">
 
 
 
@@ -437,7 +428,7 @@ var a=new Function(&amp;apos;aa&amp;apos;,console.log(&amp;apos;aa&amp;apos;));
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  557
+                  556
                 </span>
               
 
@@ -471,35 +462,10 @@ var a=new Function(&amp;apos;aa&amp;apos;,console.log(&amp;apos;aa&amp;apos;));
       
 
       
-        <h2 id="普通对象，函数对象"><a href="#普通对象，函数对象" class="headerlink" title="普通对象，函数对象"></a>普通对象，函数对象</h2><p>函数对象有三种形式</p>
-<pre><code>function a(){};
-var a=function(){};  
-var a=new Function(&apos;aa&apos;,console.log(&apos;aa&apos;));
-</code></pre><h2 id="函数对象都有个prototype-且为普通对象（特例：Function-prototype是函数对象）；"><a href="#函数对象都有个prototype-且为普通对象（特例：Function-prototype是函数对象）；" class="headerlink" title="函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；"></a>函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；</h2><h2 id="原型对象的作用是用来继承的以及原型链的概念"><a href="#原型对象的作用是用来继承的以及原型链的概念" class="headerlink" title="原型对象的作用是用来继承的以及原型链的概念"></a>原型对象的作用是用来继承的以及原型链的概念</h2><a id="more"></a>
-<pre><code>function a(name){
-     this.name = name ? name : &apos;haha&apos;;
-}
-a.prototype.getName = function(){
-     return this.name;
-}
-console.log(a.name) //&apos;haha&apos;
-console.log(a.getName()) //getName is not a function 因为没有实例
-
-var b = new a(&apos;方先生&apos;);
-b.getName();//&apos;方先生&apos;
-
-如果：
-var b = new a(&apos;方先生&apos;);
-b.getName();//undefined  通过new新建的对象只继承方法，而不会继承父类的属性
-
-原型链是达到继承效果的源性对象链
-
-b.__proto__ == a.prototype
-a.prototype.__proto__ == Object.prototype
-Object.prototype.__proto__ == null;
-一直往上直到__proto__ == null;
-b-&gt;a.prototype-&gt;Object.prototype-&gt;null;
-</code></pre><p><img src="/img/first.jpg" alt="Alt text"></p>
+        <h2 id="普通对象，函数对象"><a href="#普通对象，函数对象" class="headerlink" title="普通对象，函数对象"></a>普通对象，函数对象</h2><p>函数对象有三种形式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"><span class="keyword">var</span> a=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;  </div><div class="line"><span class="keyword">var</span> a=<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'aa'</span>,<span class="built_in">console</span>.log(<span class="string">'aa'</span>));</div></pre></td></tr></table></figure></p>
+<h2 id="函数对象都有个prototype-且为普通对象（特例：Function-prototype是函数对象）；"><a href="#函数对象都有个prototype-且为普通对象（特例：Function-prototype是函数对象）；" class="headerlink" title="函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；"></a>函数对象都有个prototype,且为普通对象（特例：Function.prototype是函数对象）；</h2><a id="more"></a>
+<h2 id="原型对象的作用是用来继承的以及原型链的概念"><a href="#原型对象的作用是用来继承的以及原型链的概念" class="headerlink" title="原型对象的作用是用来继承的以及原型链的概念"></a>原型对象的作用是用来继承的以及原型链的概念</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">     <span class="keyword">this</span>.name = name ? name : <span class="string">'haha'</span>;</div><div class="line">&#125;</div><div class="line">a.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">     <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(a.name) <span class="comment">//'haha'</span></div><div class="line"><span class="built_in">console</span>.log(a.getName()) <span class="comment">//getName is not a function 因为没有实例</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> a(<span class="string">'方先生'</span>);</div><div class="line">b.getName();<span class="comment">//'方先生'</span></div><div class="line"></div><div class="line">如果：</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> a(<span class="string">'方先生'</span>);</div><div class="line">b.getName();<span class="comment">//undefined  通过new新建的对象只继承方法，而不会继承父类的属性</span></div><div class="line"></div><div class="line">原型链是达到继承效果的源性对象链</div><div class="line"></div><div class="line">b.__proto__ == a.prototype</div><div class="line">a.prototype.__proto__ == <span class="built_in">Object</span>.prototype</div><div class="line"><span class="built_in">Object</span>.prototype.__proto__ == <span class="literal">null</span>;</div><div class="line">一直往上直到__proto__ == <span class="literal">null</span>;</div><div class="line">b-&gt;a.prototype-&gt;<span class="built_in">Object</span>.prototype-&gt;<span class="literal">null</span>;</div></pre></td></tr></table></figure>
+<p><img src="/uploads/images/first.jpg" alt="Alt text"></p>
 <p>有两点需要注意：</p>
 <ol>
 <li>注意Object.constructor===Function；//true 本身Object就是Function函数构造出来的</li>
@@ -511,53 +477,9 @@ Object.prototype.constructor === Object //true
 <li>原型和原型链是JS实现继承的一种模型。</li>
 <li>原型链的形成是真正是靠<strong>proto</strong> 而非prototype</li>
 </ol>
-<pre><code>var animal = function(){};
-var dog = function(){};
-animal.price = 2000;//
-dog.prototype = animal;
-var tidy = new dog();
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> animal = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line"><span class="keyword">var</span> dog = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">animal.price = <span class="number">2000</span>;<span class="comment">//</span></div><div class="line">dog.prototype = animal;</div><div class="line"><span class="keyword">var</span> tidy = <span class="keyword">new</span> dog();</div><div class="line"></div><div class="line">原型链分析</div><div class="line">tidy.__proto__ == dog.prototype;(这个等式成立的条件是通过<span class="keyword">new</span>继承)</div><div class="line">dog.prototype == animal;</div><div class="line"></div><div class="line">所以tidy.__proto__ == animal</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(tidy.price) <span class="comment">//2000</span></div><div class="line"><span class="built_in">console</span>.log(dog.price) <span class="comment">//unidefined</span></div><div class="line">如果：</div><div class="line">dog.__proto__ = animal;  -&gt;&gt; <span class="built_in">console</span>.log(dog.price) <span class="comment">//2000</span></div><div class="line">如果：</div><div class="line">dog.__proto__ = animal.prototype -&gt;&gt; <span class="built_in">console</span>.log(dog.price) </div><div class="line"><span class="comment">//undifined 因为dog找到的地址只有animal.prototype，并不是animal</span></div></pre></td></tr></table></figure>
+<p>//通过原型链来继承的实例写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">a.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'qwe'</span>)&#125;</div><div class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">b.prototype.__proto__ = a.prototype;</div><div class="line"></div><div class="line">b.prototype.do = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'do'</span>)&#125;</div><div class="line"></div><div class="line">c = <span class="keyword">new</span> b();</div><div class="line">c.do() <span class="comment">//do</span></div><div class="line"></div><div class="line"><span class="comment">//父类如果有方法，还是需要call方法去</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line">Person.prototype.Say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' can say!'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">Student = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;Person.call(<span class="keyword">this</span>,name)&#125;; <span class="comment">//顺序不能反，要在最前面</span></div><div class="line">Student.prototype.__proto__=Person.prototype; </div><div class="line">Student.prototype.DoHomeWork = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' can do homework!'</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> ming = <span class="keyword">new</span> Student(<span class="string">"xiaoming"</span>);</div><div class="line">ming.DoHomeWork(); <span class="comment">//'xiaoming can do homework!'</span></div><div class="line">ming.Say();</div></pre></td></tr></table></figure></p>
 
-原型链分析
-tidy.__proto__ == dog.prototype;(这个等式成立的条件是通过new继承)
-dog.prototype == animal;
-
-所以tidy.__proto__ == animal
-
-console.log(tidy.price) //2000
-console.log(dog.price) //unidefined
-如果：
-dog.__proto__ = animal;  -&gt;&gt; console.log(dog.price) //2000
-如果：
-dog.__proto__ = animal.prototype -&gt;&gt; console.log(dog.price) 
-//undifined 因为dog找到的地址只有animal.prototype，并不是animal
-</code></pre><p>//通过原型链来继承的实例写法</p>
-<pre><code>function a(){}
-a.prototype.say = function(){console.log(&apos;qwe&apos;)}
-var b = function (){};
-b.prototype.__proto__ = a.prototype;
-
-b.prototype.do = function(){console.log(&apos;do&apos;)}
-
-c = new b();
-c.do() //do
-
-//父类如果有方法，还是需要call方法去
-function Person(name){
-  this.name = name;
-}
-Person.prototype.Say = function(){
-  console.log(this.name + &apos; can say!&apos;);
-}
-
-Student = function(name){Person.call(this,name)}; //顺序不能反，要在最前面
-Student.prototype.__proto__=Person.prototype; 
-Student.prototype.DoHomeWork = function(){
-  console.log(this.name + &apos; can do homework!&apos;);
-}
-var ming = new Student(&quot;xiaoming&quot;);
-ming.DoHomeWork(); //&apos;xiaoming can do homework!&apos;
-ming.Say();
-</code></pre>
       
     </div>
 
@@ -723,7 +645,7 @@ ming.Say();
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

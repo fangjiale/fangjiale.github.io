@@ -416,7 +416,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  363
+                  364
                 </span>
               
 
@@ -451,8 +451,10 @@
 
       
         
-          <p>移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。</p>
-<p>1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况<br>解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状态。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="string">'#dl_app img'</span>).hide();</div><div class="line">&#125;, <span class="number">100</span>);</div><div class="line"></div><div class="line"><span class="built_in">window</span>.alert = <span class="function"><span class="keyword">function</span> (<span class="params">msg</span>) </span>&#123;</div><div class="line">  $(<span class="string">'body'</span>).append(<span class="string">'&lt;div&gt;'</span> + msg + <span class="string">'&lt;/div&gt;'</span>)</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">window</span>.res = <span class="literal">null</span>;</div><div class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fixedWatch</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">  alert(i++);</div><div class="line">  <span class="keyword">if</span>(<span class="built_in">document</span>.activeElement.nodeName == <span class="string">'INPUT'</span>)&#123;</div><div class="line">    el.css(<span class="string">'position'</span>, <span class="string">'static'</span>);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    el.css(<span class="string">'position'</span>, <span class="string">'fixed'</span>);</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.res ) &#123; clearInterval(<span class="built_in">window</span>.res ); <span class="built_in">window</span>.res  = <span class="literal">null</span>; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$(<span class="string">'input'</span>).focus(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span>(!<span class="built_in">window</span>.res) &#123;</div><div class="line">    fixedWatch($(<span class="string">'#headerview header'</span>));</div><div class="line">    <span class="built_in">window</span>.res = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      fixedWatch($(<span class="string">'#headerview header'</span>));</div><div class="line">    &#125;, <span class="number">500</span>);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+          
+          移动端虚拟键盘的弹出和收起是监听不到事件的，移动端虚拟键盘出现的条件是：文本框（文本类）获得焦点。
+1、导航栏和尾部为fixed时，弹出虚拟键盘时，导航栏的位置会出现偏移的情况解决方法： 监听input的focus，聚焦则fixed改为static；定时器的存在是要把static状态改回fixed状
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/virtual_keyboard/#more" rel="contents">
@@ -633,7 +635,6 @@
       
         
           <p>页面元素结构如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"banner"</span>&gt;</div><div class="line">	<span class="xml"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"banner-inner"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"banner-item"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"switch banner-switch"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"switch-item cur"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"switch-item"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
-<p>一般浏览器表现良好，但是碰到qq，uc等含有左滑右滑都会前进后退行为的浏览器就会不太友好。 这明显是浏览器默认的行为，可以通过e.preventDefault(); 来禁止，经过调试，只需在touchmove的时候禁止就可以了。 刚开始禁止的是banner-inner这个div的touchmove，因为有关滑动的操作都是绑在这个元素上面。这样之后滑动touchmove的时候表现良好，但松手后，banner-inner进行transration时就还是会触发浏览器默认行为。 就在想无论是否在动画过程中，触发的不都是banner-inner这个元素的touchmove事件，而且已经禁止默认事件了，为什么还会有浏览器默认行为呢。 经过多次尝试与监听，发现动画过程中，用户触发的是banner-inner的父级，也就是banner元素的事件。 所以解决办法是添加了banner的touchmove事件监听，就是下面代码中加粗的那部分，禁止默认事件即可。<br>下面多图组件的代码</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/carousel/#more" rel="contents">
@@ -966,7 +967,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  871
+                  874
                 </span>
               
 
@@ -1003,8 +1004,7 @@
         
           
           前言数据结构的东西大学的时候上过课，可之后前端工作上一直就没怎么用到，都已经忘得差不多了。但平时也会碰到些结构上处理的问题，虽然可以用数组，对象，递归，循环之类可以解决，但思路和写法上感觉不是那么简洁，想着能否用到数据结构的东西。
-直接上问题   trie树var data = [{
-  &quot
+直接上问题   trie树123456789101112131415
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1185,10 +1185,8 @@
 
       
         
-          
-          session存在服务端的会话存储，每个用户都有一个唯一的session_id，像验证码请求的时间（60秒之内）等信息可以存在session里面，如果前端也想从session里面取用户名等也可以存session里面。
-cookiedocument.cookie客户端的会话存储，但每次http请求头都
-          ...
+          <h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>存在服务端的会话存储，每个用户都有一个唯一的session_id，像验证码请求的时间（60秒之内）等信息可以存在session里面，如果前端也想从session里面取用户名等也可以存session里面。</p>
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/storage/#more" rel="contents">
@@ -1333,7 +1331,7 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  3,091
+                  3,097
                 </span>
               
 
@@ -1515,7 +1513,7 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  826
+                  830
                 </span>
               
 
@@ -1550,11 +1548,10 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
 
       
         
-          
-          前言事件是通过用户操作，运行js事件，达到预想的效果。明白事件的原理以及使用非常关键。所以花点时间整理出来。
-捕获和冒泡{事件的原理（捕获-&gt;目标-&gt;冒泡）}先是捕获，从window自上往下找目标，然后运行目标事件，如果没有Event.stopPropagation(),就会往上冒泡。
-
-          ...
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>事件是通过用户操作，运行js事件，达到预想的效果。明白事件的原理以及使用非常关键。所以花点时间整理出来。</p>
+<h2 id="捕获和冒泡-事件的原理（捕获-gt-目标-gt-冒泡）"><a href="#捕获和冒泡-事件的原理（捕获-gt-目标-gt-冒泡）" class="headerlink" title="捕获和冒泡{事件的原理（捕获-&gt;目标-&gt;冒泡）}"></a>捕获和冒泡{事件的原理（捕获-&gt;目标-&gt;冒泡）}</h2><p>先是捕获，从window自上往下找目标，然后运行目标事件，如果没有Event.stopPropagation(),就会往上冒泡。</p>
+<p>事件的过程提到捕获和冒泡，可能用是会用，但概念不是很清楚。</p>
+<p><strong>捕获和冒泡：捕获是从上往下的，冒泡是从下往上的冒泡，如果addEventListener() 方法第三个参数设为true，即捕获，会往下派发到子树中的监听器，只要是捕获，冒泡事件经过时就略过了</strong></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/event/#more" rel="contents">
@@ -1699,7 +1696,7 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  67
+                  70
                 </span>
               
 
@@ -1734,16 +1731,7 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
 
       
         
-          
-          方法一 table-cell.chldren{  
-    width:500px;  
-    border:1px solid #888;  
-    display:inline-block;  
-}  
-.father{  
-    width:800px;  
-    height:400
-          ...
+          <h2 id="方法一-table-cell"><a href="#方法一-table-cell" class="headerlink" title="方法一 table-cell"></a>方法一 table-cell</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.chldren</span>&#123;  </div><div class="line">    <span class="attribute">width</span>:<span class="number">500px</span>;  </div><div class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid <span class="number">#888</span>;  </div><div class="line">    <span class="attribute">display</span>:inline-block;  </div><div class="line">&#125;  </div><div class="line"><span class="selector-class">.father</span>&#123;  </div><div class="line">    <span class="attribute">width</span>:<span class="number">800px</span>;  </div><div class="line">    <span class="attribute">height</span>:<span class="number">400px</span>;  </div><div class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid <span class="number">#888</span>;  </div><div class="line">    <span class="attribute">display</span>:table-cell;</div><div class="line">	<span class="attribute">text-align</span>:center;</div><div class="line">	<span class="attribute">vertical-align</span>:middle;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/center/#more" rel="contents">
@@ -1888,7 +1876,7 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  258
+                  290
                 </span>
               
 
@@ -1923,12 +1911,11 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
 
       
         
-          
-          a标签的使用场景
-普通的a链接跳转 
-整块区域内容的跳转，就把a标签放在最外面作为父级，肯定需要设计宽高。然而a标签是行内元素，设置宽高是无效的，有三种方法（1、绝对定位 2、设置浮动 3、display：inline-block或block）. 
-&lt;input id=&apos;input&
-          ...
+          <h2 id="a标签的使用场景"><a href="#a标签的使用场景" class="headerlink" title="a标签的使用场景"></a>a标签的使用场景</h2><ol>
+<li>普通的a链接跳转 <a href="http://baidu.com"></a></li>
+<li><p>整块区域内容的跳转，就把a标签放在最外面作为父级，肯定需要设计宽高。然而a标签是行内元素，设置宽高是无效的，有三种方法（1、绝对定位 2、设置浮动 3、display：inline-block或block）.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;a id=<span class="string">'a'</span> href=<span class="string">"http://new.hrgogogo.com/userProtocal/"</span> style=<span class="string">"width:150px;height:14px;"</span>&gt;</div><div class="line">	<span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">'input'</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">id</span>=<span class="string">"remember"</span> <span class="attr">style</span>=<span class="string">"float:left;width:14px;height:14px;margin-top:1px;"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"float:left;font-weight:normal;"</span>&gt;</span>我同意遵守用户协议<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p> 这样就可以实现同样的相同样式，且点击a标签和其内部元素时进行调转，这里当input标签的type为checkbox时，点击input会处理选择框。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/label-a/#more" rel="contents">
@@ -2073,7 +2060,7 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  248
+                  250
                 </span>
               
 
@@ -2108,12 +2095,8 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
 
       
         
-          
-          有以下两种情况外边距合并margin-top失效&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; char
-          ...
+          <h2 id="有以下两种情况"><a href="#有以下两种情况" class="headerlink" title="有以下两种情况"></a>有以下两种情况</h2><h3 id="外边距合并margin-top失效"><a href="#外边距合并margin-top失效" class="headerlink" title="外边距合并margin-top失效"></a>外边距合并margin-top失效</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></div><div class="line">	    <span class="selector-class">.one</span>&#123;</div><div class="line">			<span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">			<span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">			<span class="attribute">border</span>:<span class="number">1px</span> solid blue;</div><div class="line">			<span class="attribute">margin-bottom</span>:<span class="number">100px</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="selector-class">.two</span>&#123;</div><div class="line">			<span class="attribute">width</span>:<span class="number">50px</span>;</div><div class="line">			<span class="attribute">height</span>:<span class="number">50px</span>;</div><div class="line">			<span class="attribute">border</span>:<span class="number">1px</span> solid green;</div><div class="line">			<span class="attribute">margin-top</span>:<span class="number">20px</span>;</div><div class="line">		&#125;</div><div class="line">	</div><div class="line">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"one"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"two"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这样的结果是两个div上下的距离是100px，而不是(100+20)px，因为one的margin-bottom的值比two的margin-top大，所以此处的margin-top是无效的。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/marginTop/#more" rel="contents">
@@ -2224,7 +2207,7 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

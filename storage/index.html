@@ -94,18 +94,18 @@
 
 
 <meta name="description" content="session存在服务端的会话存储，每个用户都有一个唯一的session_id，像验证码请求的时间（60秒之内）等信息可以存在session里面，如果前端也想从session里面取用户名等也可以存session里面。
-cookiedocument.cookie客户端的会话存储，但每次http请求头都会带cookie字段，服务器然后返回。大小在4k左右。这里可以存一些用户登录的信息，name和has">
+cookie">
 <meta property="og:type" content="article">
 <meta property="og:title" content="storage">
 <meta property="og:url" content="blog.calouni.win/storage/index.html">
 <meta property="og:site_name" content="blog.calouni.win">
 <meta property="og:description" content="session存在服务端的会话存储，每个用户都有一个唯一的session_id，像验证码请求的时间（60秒之内）等信息可以存在session里面，如果前端也想从session里面取用户名等也可以存session里面。
-cookiedocument.cookie客户端的会话存储，但每次http请求头都会带cookie字段，服务器然后返回。大小在4k左右。这里可以存一些用户登录的信息，name和has">
-<meta property="og:updated_time" content="2017-05-20T02:03:12.000Z">
+cookie">
+<meta property="og:updated_time" content="2017-05-20T02:38:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="storage">
 <meta name="twitter:description" content="session存在服务端的会话存储，每个用户都有一个唯一的session_id，像验证码请求的时间（60秒之内）等信息可以存在session里面，如果前端也想从session里面取用户名等也可以存session里面。
-cookiedocument.cookie客户端的会话存储，但每次http请求头都会带cookie字段，服务器然后返回。大小在4k左右。这里可以存一些用户登录的信息，name和has">
+cookie">
 
 
 
@@ -461,7 +461,8 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都会带c
 
       
         <h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>存在服务端的会话存储，每个用户都有一个唯一的session_id，像验证码请求的时间（60秒之内）等信息可以存在session里面，如果前端也想从session里面取用户名等也可以存session里面。</p>
-<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><p>document.cookie<br>客户端的会话存储，但每次http请求头都会带cookie字段，服务器然后返回。大小在4k左右。这里可以存一些用户登录的信息，name和hash（hash=md5(name+password+’asda’)）,通过name去查出密码等，然后通过计算看hash是否正确。可以做保持登录，验证是否已登录。cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭</p>
+<h2 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h2><a id="more"></a>
+<p>document.cookie<br>客户端的会话存储，但每次http请求头都会带cookie字段，服务器然后返回。大小在4k左右。这里可以存一些用户登录的信息，name和hash（hash=md5(name+password+’asda’)）,通过name去查出密码等，然后通过计算看hash是否正确。可以做保持登录，验证是否已登录。cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭</p>
 <h2 id="localStorage-sessionStorage"><a href="#localStorage-sessionStorage" class="headerlink" title="localStorage sessionStorage"></a>localStorage sessionStorage</h2><p>window.localStorage.setItem(‘key’,value)<br>客户端本地的存储，不像cookie一样会跟服务器传递，大小在5M左右。localStorage和sessionStorage区别，localStorage一直存在，所有同源页面共享。sessionStorage只在当前标签页，刷新和跳转不会消失，关闭页面即消失，不在不同的浏览器窗口中共享，即使是同一个页面</p>
 
       
@@ -631,7 +632,7 @@ cookiedocument.cookie客户端的会话存储，但每次http请求头都会带c
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

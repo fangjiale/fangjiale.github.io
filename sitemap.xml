@@ -2,65 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>blog.calouni.win/setTimeout/</loc>
+    <loc>blog.calouni.win/first/</loc>
     
-    <lastmod>2017-05-20T02:03:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/carousel/</loc>
-    
-    <lastmod>2017-05-20T02:03:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/storage/</loc>
-    
-    <lastmod>2017-05-20T02:03:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/center/</loc>
-    
-    <lastmod>2017-05-20T02:03:12.000Z</lastmod>
+    <lastmod>2017-05-20T02:43:49.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>blog.calouni.win/event/</loc>
     
-    <lastmod>2017-05-20T02:03:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/first/</loc>
-    
-    <lastmod>2017-05-20T02:03:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/hello/</loc>
-    
-    <lastmod>2017-05-20T02:03:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/label-a/</loc>
-    
-    <lastmod>2017-05-20T02:03:12.000Z</lastmod>
+    <lastmod>2017-05-20T02:42:44.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>blog.calouni.win/marginTop/</loc>
     
-    <lastmod>2017-05-20T02:03:12.000Z</lastmod>
+    <lastmod>2017-05-20T02:39:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/hello/</loc>
+    
+    <lastmod>2017-05-20T02:39:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/virtual_keyboard/</loc>
+    
+    <lastmod>2017-05-20T02:39:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/tree/</loc>
+    
+    <lastmod>2017-05-20T02:39:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/this/</loc>
+    
+    <lastmod>2017-05-20T02:39:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/storage/</loc>
+    
+    <lastmod>2017-05-20T02:38:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/setTimeout/</loc>
+    
+    <lastmod>2017-05-20T02:38:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/label-a/</loc>
+    
+    <lastmod>2017-05-20T02:38:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/center/</loc>
+    
+    <lastmod>2017-05-20T02:36:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>blog.calouni.win/carousel/</loc>
+    
+    <lastmod>2017-05-20T02:36:00.000Z</lastmod>
     
   </url>
   
@@ -68,27 +89,6 @@
     <loc>blog.calouni.win/http/</loc>
     
     <lastmod>2017-05-20T02:03:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/virtual_keyboard/</loc>
-    
-    <lastmod>2017-05-20T02:02:34.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/tree/</loc>
-    
-    <lastmod>2017-05-20T02:02:12.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>blog.calouni.win/this/</loc>
-    
-    <lastmod>2017-05-20T02:00:22.000Z</lastmod>
     
   </url>
   

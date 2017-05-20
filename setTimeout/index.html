@@ -99,7 +99,7 @@
 <meta property="og:url" content="blog.calouni.win/setTimeout/index.html">
 <meta property="og:site_name" content="blog.calouni.win">
 <meta property="og:description" content="上午在SegmentFault上看到了这个问题《关于SetTimeout 时间设为0时》（注：SegmentFault正在调整备案，如不能访问，请点击这里），原提问者注明了问题来源：《JS setTimeout延迟时间为0的详解》。这个问题来源也是转载的，我后来找到了出处。在问题来源的那篇的文章中（后者），讲述了JS是单线程引擎：它把任务放到队列中，不会同步去执行，必须在完成一个任务后才开始另外一">
-<meta property="og:updated_time" content="2017-05-20T02:03:12.000Z">
+<meta property="og:updated_time" content="2017-05-20T02:38:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="setTimeout">
 <meta name="twitter:description" content="上午在SegmentFault上看到了这个问题《关于SetTimeout 时间设为0时》（注：SegmentFault正在调整备案，如不能访问，请点击这里），原提问者注明了问题来源：《JS setTimeout延迟时间为0的详解》。这个问题来源也是转载的，我后来找到了出处。在问题来源的那篇的文章中（后者），讲述了JS是单线程引擎：它把任务放到队列中，不会同步去执行，必须在完成一个任务后才开始另外一">
@@ -423,7 +423,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  3,091
+                  3,097
                 </span>
               
 
@@ -457,104 +457,19 @@
       
 
       
-        <p>上午在SegmentFault上看到了这个问题《关于SetTimeout 时间设为0时》（注：SegmentFault正在调整备案，如不能访问，请点击这里），原提问者注明了问题来源：《JS setTimeout延迟时间为0的详解》。这个问题来源也是转载的，我后来找到了出处。<br>在问题来源的那篇的文章中（后者），讲述了JS是单线程引擎：它把任务放到队列中，不会同步去执行，必须在完成一个任务后才开始另外一个任务。<br>而后，转载的那篇文章列出并补充了原文的栗子：</p>
-<pre><code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
-&lt;title&gt;setTimeout&lt;/title&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    function get(id) {
-        return document.getElementById(id);
-    }
-    window.onload = function () {
-        //第一个例子：未使用setTimeout
-        get(&apos;makeinput&apos;).onmousedown = function () {
-            var input = document.createElement(&apos;input&apos;);
-            input.setAttribute(&apos;type&apos;, &apos;text&apos;);
-            input.setAttribute(&apos;value&apos;, &apos;test1&apos;);
-            get(&apos;inpwrapper&apos;).appendChild(input);
-            input.focus();
-            input.select();
-        }
-        //第二个例子：使用setTimeout
-        get(&apos;makeinput2&apos;).onmousedown = function () {
-            var input = document.createElement(&apos;input&apos;);
-            input.setAttribute(&apos;type&apos;, &apos;text&apos;);
-            input.setAttribute(&apos;value&apos;, &apos;test1&apos;);
-            get(&apos;inpwrapper2&apos;).appendChild(input);
-            //setTimeout
-            setTimeout(function () {
-                input.focus();
-                input.select();
-            }, 0);
-        }
-        //第三个例子，onkeypress输入的时候少了一个值
-        get(&apos;input&apos;).onkeypress = function () {
-            get(&apos;preview&apos;).innerHTML = this.value;
-        }
-    }
-&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;&lt;code&gt;setTimeout&lt;/code&gt;&lt;/h1&gt;
-&lt;h2&gt;1、未使用 &lt;code&gt;setTimeout&lt;/code&gt;&lt;/h2&gt;
-&lt;button id=&quot;makeinput&quot;&gt;生成 input&lt;/button&gt;
-&lt;p id=&quot;inpwrapper&quot;&gt;&lt;/p&gt;
-
-
-&lt;h2&gt;2、使用 &lt;code&gt;setTimeout&lt;/code&gt;&lt;/h2&gt;
-&lt;button id=&quot;makeinput2&quot;&gt;生成 input&lt;/button&gt;
-&lt;p id=&quot;inpwrapper2&quot;&gt;&lt;/p&gt;
-
-
-&lt;h2&gt;3、另一个例子&lt;/h2&gt;
-&lt;p&gt;
-    &lt;input type=&quot;text&quot; id=&quot;input&quot; value=&quot;&quot; /&gt;&lt;span id=&quot;preview&quot;&gt;&lt;/span&gt;
-&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>代码运行实例请戳这里。<br>原文中有这么一段话，描述的有点抽象：</p>
+        <p>上午在SegmentFault上看到了这个问题《关于SetTimeout 时间设为0时》（注：SegmentFault正在调整备案，如不能访问，请点击这里），原提问者注明了问题来源：《JS setTimeout延迟时间为0的详解》。这个问题来源也是转载的，我后来找到了出处。<br>在问题来源的那篇的文章中（后者），讲述了JS是单线程引擎：它把任务放到队列中，不会同步去执行，必须在完成一个任务后才开始另外一个任务。<br>而后，转载的那篇文章列出并补充了原文的栗子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">	&lt;!DOCTYPE HTML PUBLIC <span class="string">"-//W3C//DTD HTML 4.01//EN"</span> <span class="string">"http://www.w3.org/TR/html4/strict.dtd"</span>&gt;</div><div class="line">	&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;</div><div class="line">    &lt;title&gt;setTimeout&lt;/title&gt;</div><div class="line">    &lt;script type="text/javascript"&gt;</div><div class="line">        function get(id) &#123;</div><div class="line">            return document.getElementById(id);</div><div class="line">        &#125;</div><div class="line">        window.onload = function () &#123;</div><div class="line">            //第一个例子：未使用setTimeout</div><div class="line">            get('makeinput').onmousedown = function () &#123;</div><div class="line">                var input = document.createElement('input');</div><div class="line">                input.setAttribute('type', 'text');</div><div class="line">                input.setAttribute('value', 'test1');</div><div class="line">                get('inpwrapper').appendChild(input);</div><div class="line">                input.focus();</div><div class="line">                input.select();</div><div class="line">            &#125;</div><div class="line">            //第二个例子：使用setTimeout</div><div class="line">            get('makeinput2').onmousedown = function () &#123;</div><div class="line">                var input = document.createElement('input');</div><div class="line">                input.setAttribute('type', 'text');</div><div class="line">                input.setAttribute('value', 'test1');</div><div class="line">                get('inpwrapper2').appendChild(input);</div><div class="line">                //setTimeout</div><div class="line">                setTimeout(function () &#123;</div><div class="line">                    input.focus();</div><div class="line">                    input.select();</div><div class="line">                &#125;, 0);</div><div class="line">            &#125;</div><div class="line">            //第三个例子，onkeypress输入的时候少了一个值</div><div class="line">            get('input').onkeypress = function () &#123;</div><div class="line">                get('preview').innerHTML = this.value;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &lt;/script&gt;</div><div class="line">    </div><div class="line">&lt;!--more--&gt;</div><div class="line"></div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">    &lt;h1&gt;&lt;code&gt;setTimeout&lt;/code&gt;&lt;/h1&gt;</div><div class="line">    &lt;h2&gt;1、未使用 &lt;code&gt;setTimeout&lt;/code&gt;&lt;/h2&gt;</div><div class="line">    &lt;button id="makeinput"&gt;生成 input&lt;/button&gt;</div><div class="line">    &lt;p id="inpwrapper"&gt;&lt;/p&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;h2&gt;2、使用 &lt;code&gt;setTimeout&lt;/code&gt;&lt;/h2&gt;</div><div class="line">    &lt;button id="makeinput2"&gt;生成 input&lt;/button&gt;</div><div class="line">    &lt;p id="inpwrapper2"&gt;&lt;/p&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;h2&gt;3、另一个例子&lt;/h2&gt;</div><div class="line">    &lt;p&gt;</div><div class="line">        &lt;input type="text" id="input" value="" /&gt;&lt;span id="preview"&gt;&lt;/span&gt;</div><div class="line">    &lt;/p&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">	&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>代码运行实例请戳这里。<br>原文中有这么一段话，描述的有点抽象：</p>
 <p>JavaScript引擎在执行onmousedown时，由于没有多线程的同步执行，不可能同时去处理刚创建元素的focus 和select方法，由于这两个方法都不在队列中，在完成onmousedown后，JavaScript 引擎已经丢弃了这两个任务，正如第一种情况。而在第二种情况中，由于setTimeout可以把任务从某个队列中跳脱成为新队列，因而能够得到期望的结果。</p>
-<p>我看到这里就觉得非常不对劲了。因为按照这种任务会被丢弃的说法，那么只要在事件触发的函数中再触发其他的事件都会被丢弃，浏览器是绝对不会这么做的，于是我编写了测试代码：</p>
-<pre><code>window.onload = function () {
-    //第一个例子：未使用setTimeout
-    get(&apos;makeinput&apos;).onmousedown = function () {
-        var input = document.createElement(&apos;input&apos;);
-        input.setAttribute(&apos;type&apos;, &apos;text&apos;);
-        input.setAttribute(&apos;value&apos;, &apos;test1&apos;);
-        get(&apos;inpwrapper&apos;).appendChild(input);
-        //按照文中的理论，这里的click不会被触发，但它却成功触发了
-        get(&apos;inpwrapper&apos;).click();//触发了inpwrapper的onclick事件
-    }
-    get(&apos;inpwrapper&apos;).onclick = function () {
-        alert(&apos;linkFly&apos;);
-    };
-}
-</code></pre><p>下面的onclick()最终是执行了：弹出了”linkFly”。</p>
+<p>我看到这里就觉得非常不对劲了。因为按照这种任务会被丢弃的说法，那么只要在事件触发的函数中再触发其他的事件都会被丢弃，浏览器是绝对不会这么做的，于是我编写了测试代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//第一个例子：未使用setTimeout</span></div><div class="line">    get(<span class="string">'makeinput'</span>).onmousedown = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</div><div class="line">        input.setAttribute(<span class="string">'type'</span>, <span class="string">'text'</span>);</div><div class="line">        input.setAttribute(<span class="string">'value'</span>, <span class="string">'test1'</span>);</div><div class="line">        get(<span class="string">'inpwrapper'</span>).appendChild(input);</div><div class="line">        <span class="comment">//按照文中的理论，这里的click不会被触发，但它却成功触发了</span></div><div class="line">        get(<span class="string">'inpwrapper'</span>).click();<span class="comment">//触发了inpwrapper的onclick事件</span></div><div class="line">    &#125;</div><div class="line">    get(<span class="string">'inpwrapper'</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        alert(<span class="string">'linkFly'</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面的onclick()最终是执行了：弹出了”linkFly”。</p>
 <p>而在转载的文中为了引人深思，又提出了第三个例子：</p>
 <p>在此，你可以看看例子 3，它的任务是实时更新输入的文本，现在请试试，你会发现预览区域总是落后一拍，比如你输 a, 预览区并没有出现 a, 在紧接输入b时，a才不慌不忙地出现。</p>
-<p>而文中最后留给大家的思考的问题，解决方案就是使用setTimeout再次调整浏览器的代码任务运行队列。</p>
-<pre><code>var domInput = get(&apos;input&apos;);
-domInput.onkeypress = function () {
-    setTimeout(function () {
-        //第三个例子的问题就这样就会被解决
-        get(&apos;preview&apos;).innerHTML = domInput.value;
-    })
-}
-</code></pre><p>原文和转载的文章中都对setTimeout(fn,0)进行了思考，但原文指出的问题本质漏洞百出，所以才出了这篇文章，我们的正文，现在开始。</p>
+<p>而文中最后留给大家的思考的问题，解决方案就是使用setTimeout再次调整浏览器的代码任务运行队列。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> domInput = get(<span class="string">'input'</span>);</div><div class="line">domInput.onkeypress = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">//第三个例子的问题就这样就会被解决</span></div><div class="line">        get(<span class="string">'preview'</span>).innerHTML = domInput.value;</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>原文和转载的文章中都对setTimeout(fn,0)进行了思考，但原文指出的问题本质漏洞百出，所以才出了这篇文章，我们的正文，现在开始。</p>
 <p>单线程的JavaScript</p>
 <p>首先我们来看浏览器下的JavaScript：<br>浏览器的内核是多线程的，它们在内核制控下相互配合以保持同步，一个浏览器至少实现三个常驻线程：javascript引擎线程，GUI渲染线程，浏览器事件触发线程。</p>
-<p>javascript引擎是基于事件驱动单线程执行的，JS引擎一直等待着任务队列中任务的到来，然后加以处理，浏览器无论什么时候都只有一个JS线程在运行JS程序。<br>GUI渲染线程负责渲染浏览器界面，当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时,该线程就会执行。但需要注意 GUI渲染线程与JS引擎是互斥的，当JS引擎执行时GUI线程会被挂起，GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。<br>事件触发线程，当一个事件被触发时该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。这些事件可来自JavaScript引擎当前执行的代码块如setTimeOut、也可来自浏览器内核的其他线程如鼠标点击、AJAX异步请求等，但由于JS的单线程关系所有这些事件都得排队等待JS引擎处理。（当线程中没有执行任何同步代码的前提下才会执行异步代码）<br>js的单线程在这一段面试代码中尤为明显（理解即可，请不要尝试…浏览器会假死的）：</p>
-<pre><code>var isEnd = true;
-window.setTimeout(function () {
-    isEnd = false;//1s后，改变isEnd的值
-}, 1000);
-//这个while永远的占用了js线程，所以setTimeout里面的函数永远不会执行
-while (isEnd);
-//alert也永远不会弹出
-alert(&apos;end&apos;);
-</code></pre><p>在我工作中对js的认识，个人认为js的任务单位是函数。即，一个函数表示着一个任务，这个函数没有执行结束，则在浏览器中当前的任务即没有结束。<br>上面的代码中，当前任务因为while的执行而造成永远无法执行，所以后面的setTimeout也永远不会被执行。它在浏览器的任务队列中如图所示：</p>
+<p>javascript引擎是基于事件驱动单线程执行的，JS引擎一直等待着任务队列中任务的到来，然后加以处理，浏览器无论什么时候都只有一个JS线程在运行JS程序。<br>GUI渲染线程负责渲染浏览器界面，当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时,该线程就会执行。但需要注意 GUI渲染线程与JS引擎是互斥的，当JS引擎执行时GUI线程会被挂起，GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。<br>事件触发线程，当一个事件被触发时该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。这些事件可来自JavaScript引擎当前执行的代码块如setTimeOut、也可来自浏览器内核的其他线程如鼠标点击、AJAX异步请求等，但由于JS的单线程关系所有这些事件都得排队等待JS引擎处理。（当线程中没有执行任何同步代码的前提下才会执行异步代码）<br>js的单线程在这一段面试代码中尤为明显（理解即可，请不要尝试…浏览器会假死的）：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> isEnd = <span class="literal">true</span>;</div><div class="line"><span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    isEnd = <span class="literal">false</span>;<span class="comment">//1s后，改变isEnd的值</span></div><div class="line">&#125;, <span class="number">1000</span>);</div><div class="line"><span class="comment">//这个while永远的占用了js线程，所以setTimeout里面的函数永远不会执行</span></div><div class="line"><span class="keyword">while</span> (isEnd);</div><div class="line"><span class="comment">//alert也永远不会弹出</span></div><div class="line">alert(<span class="string">'end'</span>);</div></pre></td></tr></table></figure></p>
+<p>在我工作中对js的认识，个人认为js的任务单位是函数。即，一个函数表示着一个任务，这个函数没有执行结束，则在浏览器中当前的任务即没有结束。<br>上面的代码中，当前任务因为while的执行而造成永远无法执行，所以后面的setTimeout也永远不会被执行。它在浏览器的任务队列中如图所示：</p>
 <p>Browser Event</p>
 <p>setTimeout背后意味着什么</p>
 <p>这篇文章一直在使用setTimeout为我们展现和理解js单线程的设计，只是它错误的使用了Event来进行演示，并过度解读了Event。<br>这里原文和转载的文章忽略了这些基础的事件触发，而且也偏偏挑了两套本身设计就比较复杂的API：onmouseXXX系和onkeyXXX系。</p>
@@ -565,107 +480,21 @@ alert(&apos;end&apos;);
 <p>onkeydown =&gt; onkeypress =&gt; onkeyup</p>
 <p>使用了setTimeout之后，流程应该是下面这样子的：</p>
 <p>onkeydown =&gt; onkeypress =&gt; function =&gt; onkeyup</p>
-<p>使用setTimeout(fn,0)之后，在onkeypress后面插入了我们的函数function。上面所说，浏览器在onkeypress之后就会更新相关DOM元素的状态（input[type=text]的value），所以我们的function里面可以拿到最新的值。<br>所以我们在onkeypress里面挂起setTimeout能拿到正确的值，下面的代码可以测试使用setTimeout(fn,0)之后的流程：</p>
-<pre><code>window.onload = function () {
-    var domInput = get(&apos;input&apos;), view = get(&apos;preview&apos;);
-    //onkeypress兼容性和说明：http://www.w3school.com.cn/jsref/jsref_events.asp
-    domInput.onkeypress = function () {
-        setTimeout(function () {
-            //这个函数在keypress之后，keyup之前执行
-            console.log(&apos;linkFly&apos;);
-        });
-    };
-    domInput.onkeyup = function () {
-        console.log(&apos;up&apos;);
-    };
-};
-</code></pre><p>然后我们再来谈谈原代码中的示例1和示例2，示例1和示例2的区别在这里：</p>
-<pre><code>//示例1
-input.focus();
-input.select();
-
-//示例2
-setTimeout(function () {
-    input.focus();
-    input.select();
-}, 0);
-</code></pre><p>原文章中说示例1的focus()和select()在onmousedown事件中被丢弃，从而导致了没有选中，但原文的作者忽略了他注册的事件是：onmousedown。<br>我们暂且不讨论onmouseXXX系的其他API，我们仅关注和点击相关的，它们的执行顺序是：</p>
-<p>mousedown - 鼠标按钮按下<br>mouseup - 鼠标按钮释放<br>click - 完成单击<br>我们在onmousedown里面新建了input，并且选中input的值（调用了input.focus(),input.select()）。<br>那么为什么没有被选中呢？这样，我们来做一次测试，看看我们的onfocus到底是被丢弃了，还是触发了。我们把原文的代码进行改写：</p>
-<pre><code>window.onload = function () {
-    var makeBtn = get(&apos;makeinput&apos;);
-    //观察onmouseXXX系完成整个单击的顺序
-    makeBtn.onmousedown = function (e) {
-        console.log(e.type);
-        var input = document.createElement(&apos;input&apos;);
-        input.setAttribute(&apos;type&apos;, &apos;text&apos;);
-        input.setAttribute(&apos;value&apos;, &apos;test1&apos;);
-        get(&apos;inpwrapper&apos;).appendChild(input);
-        input.onfocus = function () {//观察我们新生成的input什么时候获取焦点的，或者它有没有像原文作者说的那样被丢弃了
-            console.info(&apos;input focus&apos;);
-        };
-        input.focus();
-        input.select();
-    }
-    makeBtn.onclick = function (e) {
-        console.log(e.type);
-    };
-    makeBtn.onmouseup = function (e) {
-        console.log(e.type);
-    };
-    makeBtn.onfocus = function () {//观察我们生成按钮什么时候获取焦点的
-        console.log(&apos;makeBtn focus&apos;);
-    }
-};
-</code></pre><p>代码运行的结果是这样的：<br>onmouseXXX &amp; focus</p>
-<p>我们的input focus执行了——那么它为什么没有获取到焦点呢？我们再看看后面执行的函数：我们点击的按钮，在mousedown之后，才获得焦点，也就是说：我们的input本来已经得到了focus()，但在onmousedown之后，我们点击的按钮才迟迟触发了自己的onfocus()，导致我们的input被覆盖。<br>我们再加上setTimeout进行测试：</p>
-<pre><code>window.onload = function () {
-    var makeBtn = get(&apos;makeinput&apos;);
-    makeBtn.onmousedown = function (e) {
-        console.log(e.type);
-        var input = document.createElement(&apos;input&apos;);
-        input.setAttribute(&apos;type&apos;, &apos;text&apos;);
-        input.setAttribute(&apos;value&apos;, &apos;test1&apos;);
-        get(&apos;inpwrapper&apos;).appendChild(input);
-        input.onfocus = function () {
-            console.info(&apos;input focus&apos;);
-        };
-        //我们加上setTimeout，看看会发生什么
-        setTimeout(function () {
-            input.focus();
-            input.select();
-        });
-    }
-    makeBtn.onclick = function (e) {
-        console.log(e.type);
-    };
-    makeBtn.onmouseup = function (e) {
-        console.log(e.type);
-    };
-    makeBtn.onfocus = function () {
-        console.log(&apos;makeBtn focus&apos;);
-    }
-};
-</code></pre><p>执行结果是这样：<br>onmouseXXX and settimeout</p>
+<p>使用setTimeout(fn,0)之后，在onkeypress后面插入了我们的函数function。上面所说，浏览器在onkeypress之后就会更新相关DOM元素的状态（input[type=text]的value），所以我们的function里面可以拿到最新的值。<br>所以我们在onkeypress里面挂起setTimeout能拿到正确的值，下面的代码可以测试使用setTimeout(fn,0)之后的流程：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> domInput = get(<span class="string">'input'</span>), view = get(<span class="string">'preview'</span>);</div><div class="line">    <span class="comment">//onkeypress兼容性和说明：http://www.w3school.com.cn/jsref/jsref_events.asp</span></div><div class="line">    domInput.onkeypress = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="comment">//这个函数在keypress之后，keyup之前执行</span></div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'linkFly'</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;;</div><div class="line">    domInput.onkeyup = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'up'</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>然后我们再来谈谈原代码中的示例1和示例2，示例1和示例2的区别在这里：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//示例1</span></div><div class="line">input.focus();</div><div class="line">input.select();</div><div class="line"></div><div class="line"><span class="comment">//示例2</span></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    input.focus();</div><div class="line">    input.select();</div><div class="line">&#125;, <span class="number">0</span>);</div></pre></td></tr></table></figure></p>
+<p>原文章中说示例1的focus()和select()在onmousedown事件中被丢弃，从而导致了没有选中，但原文的作者忽略了他注册的事件是：onmousedown。<br>我们暂且不讨论onmouseXXX系的其他API，我们仅关注和点击相关的，它们的执行顺序是：</p>
+<p>mousedown - 鼠标按钮按下<br>mouseup - 鼠标按钮释放<br>click - 完成单击<br>我们在onmousedown里面新建了input，并且选中input的值（调用了input.focus(),input.select()）。<br>那么为什么没有被选中呢？这样，我们来做一次测试，看看我们的onfocus到底是被丢弃了，还是触发了。我们把原文的代码进行改写：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> makeBtn = get(<span class="string">'makeinput'</span>);</div><div class="line">    <span class="comment">//观察onmouseXXX系完成整个单击的顺序</span></div><div class="line">    makeBtn.onmousedown = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(e.type);</div><div class="line">        <span class="keyword">var</span> input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</div><div class="line">        input.setAttribute(<span class="string">'type'</span>, <span class="string">'text'</span>);</div><div class="line">        input.setAttribute(<span class="string">'value'</span>, <span class="string">'test1'</span>);</div><div class="line">        get(<span class="string">'inpwrapper'</span>).appendChild(input);</div><div class="line">        input.onfocus = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//观察我们新生成的input什么时候获取焦点的，或者它有没有像原文作者说的那样被丢弃了</span></div><div class="line">            <span class="built_in">console</span>.info(<span class="string">'input focus'</span>);</div><div class="line">        &#125;;</div><div class="line">        input.focus();</div><div class="line">        input.select();</div><div class="line">    &#125;</div><div class="line">    makeBtn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(e.type);</div><div class="line">    &#125;;</div><div class="line">    makeBtn.onmouseup = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(e.type);</div><div class="line">    &#125;;</div><div class="line">    makeBtn.onfocus = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//观察我们生成按钮什么时候获取焦点的</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'makeBtn focus'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>代码运行的结果是这样的：<br>onmouseXXX &amp; focus</p>
+<p>我们的input focus执行了——那么它为什么没有获取到焦点呢？我们再看看后面执行的函数：我们点击的按钮，在mousedown之后，才获得焦点，也就是说：我们的input本来已经得到了focus()，但在onmousedown之后，我们点击的按钮才迟迟触发了自己的onfocus()，导致我们的input被覆盖。<br>我们再加上setTimeout进行测试：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> makeBtn = get(<span class="string">'makeinput'</span>);</div><div class="line">    makeBtn.onmousedown = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(e.type);</div><div class="line">        <span class="keyword">var</span> input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</div><div class="line">        input.setAttribute(<span class="string">'type'</span>, <span class="string">'text'</span>);</div><div class="line">        input.setAttribute(<span class="string">'value'</span>, <span class="string">'test1'</span>);</div><div class="line">        get(<span class="string">'inpwrapper'</span>).appendChild(input);</div><div class="line">        input.onfocus = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.info(<span class="string">'input focus'</span>);</div><div class="line">        &#125;;</div><div class="line">        <span class="comment">//我们加上setTimeout，看看会发生什么</span></div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            input.focus();</div><div class="line">            input.select();</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    makeBtn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(e.type);</div><div class="line">    &#125;;</div><div class="line">    makeBtn.onmouseup = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(e.type);</div><div class="line">    &#125;;</div><div class="line">    makeBtn.onfocus = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'makeBtn focus'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>执行结果是这样：<br>onmouseXXX and settimeout</p>
 <p>可以看见当我们点击”生成”按钮的时候，按钮的focus正确的执行了，然后才执行了input focus。<br>在示例1中，我们在onmousedown()中执行了input.focus()导致input得到焦点，而onmousedown之后，我们点击的按钮才迟迟得到了自己的焦点，造成了我们input刚拿到手还没焐热的焦点被转移。<br>而示例2中的代码，我们延迟了焦点，当按钮获得焦点之后，我们的input再把焦点抢过来，所以，使用setTimeout(fn,0)之后，我们的input可以得到焦点并选中文本。<br>这里值得思考的focus()的执行时机，根据这次测试观察，发现focus事件好像挂载在mousedown之内的最后面，而不是直接挂在mousedown的后面。它和mousedown仿佛是一体的。<br>我们使用setTimeout之前的任务流程是这样的（-&gt;表示在上一个任务中，=&gt;表示在上一个任务后）：</p>
 <p>onmousedown -&gt; onmousedown中执行了input.focus() -&gt; button.onfocus =&gt; onmouseup =&gt; onclick</p>
 <p>onmouseXXX事件流程</p>
 <p>而我们使用了setTimeout之后的任务流程是这样的：</p>
 <p>onmousedown -&gt; button.onfocus =&gt; input.focus =&gt; onmouseup =&gt; onclick</p>
 <p>onmouseXXX+setTimeout事件流程</p>
-<p>而从上面的流程上我们得知了另外的消息，我们还可以把input.focus挂在mouseup和click下，因为在这些事件之前，我们的按钮已经得到过焦点了，不会再抢我们的焦点了。</p>
-<pre><code>makeBtn.click = function (e) {
-    console.log(e.type);
-    var input = document.createElement(&apos;input&apos;);
-    input.setAttribute(&apos;type&apos;, &apos;text&apos;);
-    input.setAttribute(&apos;value&apos;, &apos;test1&apos;);
-    get(&apos;inpwrapper&apos;).appendChild(input);
-    input.onfocus = function () {//观察我们新生成的input什么时候获取焦点的
-        console.info(&apos;input focus&apos;);
-    };
-    input.focus();
-    input.select();
-}
-</code></pre><p>出处：www.cnblogs.com/silin6/<br>我们应该认识到，利用setTimeout(fn,0)的特性，可以帮助我们在某些极端场景下，修正浏览器的下一个任务。</p>
+<p>而从上面的流程上我们得知了另外的消息，我们还可以把input.focus挂在mouseup和click下，因为在这些事件之前，我们的按钮已经得到过焦点了，不会再抢我们的焦点了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">makeBtn.click = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(e.type);</div><div class="line">    <span class="keyword">var</span> input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</div><div class="line">    input.setAttribute(<span class="string">'type'</span>, <span class="string">'text'</span>);</div><div class="line">    input.setAttribute(<span class="string">'value'</span>, <span class="string">'test1'</span>);</div><div class="line">    get(<span class="string">'inpwrapper'</span>).appendChild(input);</div><div class="line">    input.onfocus = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//观察我们新生成的input什么时候获取焦点的</span></div><div class="line">        <span class="built_in">console</span>.info(<span class="string">'input focus'</span>);</div><div class="line">    &#125;;</div><div class="line">    input.focus();</div><div class="line">    input.select();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>出处：www.cnblogs.com/silin6/<br>我们应该认识到，利用setTimeout(fn,0)的特性，可以帮助我们在某些极端场景下，修正浏览器的下一个任务。</p>
 <p>到了这里，我们已经可以否定原文所说的：”JavaScript引擎已经丢弃了这两个任务”。<br>我仍然相信，浏览器是爱我们的（除了IE6和移动端一些XXOO的浏览器！！！！）浏览器并不会平白无故的丢弃我们辛劳写下的代码，多数时候，只是因为我们没有看见背后的真相而已。</p>
 
       
@@ -824,7 +653,7 @@ setTimeout(function () {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
