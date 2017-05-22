@@ -233,7 +233,7 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
     </entry>
     
     <entry>
-      <title><![CDATA[事件]]></title>
+      <title><![CDATA[js事件 捕获,冒泡原理  绑定事件若干方法和区别]]></title>
       <url>/event/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>事件是通过用户操作，运行js事件，达到预想的效果。明白事件的原理以及使用非常关键。所以花点时间整理出来。</p>
 <h2 id="捕获和冒泡-事件的原理（捕获-gt-目标-gt-冒泡）"><a href="#捕获和冒泡-事件的原理（捕获-gt-目标-gt-冒泡）" class="headerlink" title="捕获和冒泡{事件的原理（捕获-&gt;目标-&gt;冒泡）}"></a>捕获和冒泡{事件的原理（捕获-&gt;目标-&gt;冒泡）}</h2><p>先是捕获，从window自上往下找目标，然后运行目标事件，如果没有Event.stopPropagation(),就会往上冒泡。</p>
@@ -271,7 +271,7 @@ connection: keep-alive</code><br>有关服务器的很多信息会放在这里�
         
         <tags>
             
-            <tag> js事件 </tag>
+            <tag> js </tag>
             
         </tags>
         
