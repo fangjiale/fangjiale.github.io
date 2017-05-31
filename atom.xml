@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="blog.calouni.win/"/>
-  <updated>2017-05-20T02:59:16.000Z</updated>
+  <updated>2017-05-31T02:11:59.000Z</updated>
   <id>blog.calouni.win/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mac用dd命令录入iso镜像到u盘</title>
+    <link href="blog.calouni.win/writeIso/"/>
+    <id>blog.calouni.win/writeIso/</id>
+    <published>2017-05-22T02:49:50.000Z</published>
+    <updated>2017-05-31T02:11:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>操作系统的镜像 下载：This is <a href="http://www.itellyou.cn/" title="Title" target="_blank" rel="external">link</a> to download. </p>
+<h3 id="如果是windows用ultraISO写入U盘（还没试过）"><a href="#如果是windows用ultraISO写入U盘（还没试过）" class="headerlink" title="如果是windows用ultraISO写入U盘（还没试过）"></a>如果是windows用ultraISO写入U盘（还没试过）</h3><h3 id="如果是mac可以用dd命令"><a href="#如果是mac可以用dd命令" class="headerlink" title="如果是mac可以用dd命令"></a>如果是mac可以用dd命令</h3><p><img src="/uploads/img/iso.jpg" alt="Alt text"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;操作系统的镜像 下载：This is &lt;a href=&quot;http://www.itellyou.cn/&quot; title=&quot;Title&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;link&lt;/a&gt; to download. &lt;/p&gt;
+&lt;h3 id=&quot;如果是w
+    
+    </summary>
+    
+      <category term="技术篇" scheme="blog.calouni.win/categories/%E6%8A%80%E6%9C%AF%E7%AF%87/"/>
+    
+    
+      <category term="操作系统" scheme="blog.calouni.win/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>H5虚拟键盘的弹出和收起</title>
