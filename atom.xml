@@ -111,6 +111,32 @@
   </entry>
   
   <entry>
+    <title>利用svg画圆，可用于进度条</title>
+    <link href="blog.calouni.win/svg-circle/"/>
+    <id>blog.calouni.win/svg-circle/</id>
+    <published>2017-04-19T22:49:50.000Z</published>
+    <updated>2017-06-23T07:40:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;  </div><div class="line">&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;  </div><div class="line">&lt;head&gt;  </div><div class="line">&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;  </div><div class="line">&lt;title&gt;svg画圆&lt;/title&gt;  </div><div class="line">&lt;style&gt;  </div><div class="line">body&#123;background:#000;&#125;  </div><div class="line">.svgs&#123;width:105px;height:105px;background:#fff;&#125;  </div><div class="line">&lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;  </div><div class="line">  &lt;div class="svgs"&gt;  </div><div class="line">&lt;/div&gt;  </div><div class="line">&lt;/body&gt;  </div><div class="line">&lt;/html&gt;  </div><div class="line">&lt;script type="text/javascript"&gt;  </div><div class="line">//协议  </div><div class="line">var svgNS = "http://www.w3.org/2000/svg";     </div><div class="line">//封装方法创建标签  </div><div class="line">function createTag(tag,tagAttr)&#123;  </div><div class="line">    var oTag=document.createElementNS(svgNS,tag);  </div><div class="line">    for(var attr in tagAttr)&#123;  </div><div class="line">        oTag.setAttribute(attr,tagAttr[attr]);  </div><div class="line">    &#125;;  </div><div class="line">    return oTag;  </div><div class="line">&#125;;  </div><div class="line">//画圆弧的路径  </div><div class="line">function drawArcByRadiusDeg(startX, startY, r, deg, clockwise) &#123;  </div><div class="line">    var cw = typeof clockwise !== 'undefined' ? clockwise : 1;  </div><div class="line">    var angle = deg*Math.PI/180</div><div class="line">    var x = startX  + (clockwise ? 1:-1)*r*Math.sin(angle);  </div><div class="line">    var y = startY + r - r*Math.cos(angle);  </div><div class="line">    var bigOrSmall = deg&gt;180 ? 1 : 0;  </div><div class="line">    return "M " + startX +" "+ startY + " A "+ r +" " + r + " 0 " + bigOrSmall + " " +cw+ " " + x + " " + y  </div><div class="line">&#125;</div><div class="line">//画图  </div><div class="line">function drawPath(data)&#123;</div><div class="line">    var x=52,y=2,r = 50,clockwise=1;//x,y圆心位置   r圆弧的半径   clockwise顺时针  </div><div class="line">    var strokeWidth = 4  </div><div class="line">    var Percentage=data*359.9999;</div><div class="line">    var circle2=createTag('path',&#123;'d':drawArcByRadiusDeg(x, y, r, Percentage, clockwise),'stroke':"red",'fill-opacity':"0",'stroke-width':strokeWidth&#125;);</div><div class="line">    oSvg.appendChild(circle2)</div><div class="line">&#125;  </div><div class="line"></div><div class="line">//创建svg  </div><div class="line">var oSvg=createTag('svg',&#123;"width":"100%","height":"100%",'xmlns':svgNS&#125;);  </div><div class="line"></div><div class="line">document.getElementsByClassName("svgs")[0].appendChild(oSvg)</div><div class="line">//调用</div><div class="line">var per = 0;</div><div class="line">var sh = setInterval(function()&#123;</div><div class="line">  if(per&lt;100)&#123;</div><div class="line">    per+=2;</div><div class="line">    drawPath(per/100)</div><div class="line">  &#125;else&#123;</div><div class="line">    clearInterval(sh)</div><div class="line">  &#125;</div><div class="line">&#125;,100) </div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>这段代码可以直接运行，默认起点是顶部，顺时针开始，参数可以修改。<br>drawPath函数里可以修改起点，x,y; 顺序clockwise参数；线的宽度 strokeWith<br>如果起点改掉的话需要修改  drawArcByRadiusDeg 函数里面的  x,y的值；对，就是要根据角度和半径计算，如果三角函数忘了的话可以查一查，自己补上这两行。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;
+    
+    </summary>
+    
+      <category term="技术篇" scheme="blog.calouni.win/categories/%E6%8A%80%E6%9C%AF%E7%AF%87/"/>
+    
+    
+      <category term="浏览器" scheme="blog.calouni.win/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+      <category term="兼容性" scheme="blog.calouni.win/tags/%E5%85%BC%E5%AE%B9%E6%80%A7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>多图滑动兼容浏览器默认行为</title>
     <link href="blog.calouni.win/carousel/"/>
     <id>blog.calouni.win/carousel/</id>
